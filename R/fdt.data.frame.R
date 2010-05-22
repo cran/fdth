@@ -12,7 +12,7 @@ function (x, k, by, breaks=c('Sturges', 'Scott', 'FD'),
       if (logCol[i]) {
         m      <- as.matrix(x[ ,i])
         fdt    <- make.fdt.multiple(m, k, breaks, right)
-        tmpres <- list(table=fdt[[1]], breaks=fdt[[2]], data=fdt[[3]])
+        tmpres <- list(table=fdt[[1]], breaks=fdt[[2]])
         res    <- c(res, list(tmpres))
       }
     }

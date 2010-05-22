@@ -14,26 +14,23 @@
 }
 
 \usage{
-  \method{plot}{fdt.default}(x, type=c('h', 'fp', 'rfp', 'rfpp', 'cfp', 'cfpp'),
-    freq=TRUE, xlab="Class limits", ylab=ifelse(freq, "Frequency", "Density"),
-    col="gray", xlim=NULL, ylim=NULL, main=NULL, x.round=2, x.las=1, \dots)
-  \method{plot}{fdt.multiple}(x, type=c('h', 'fp', 'rfp', 'rfpp', 'cfp', 'cfpp'),
-    freq=TRUE, xlab="Class limits", ylab=ifelse(freq, "Frequency", "Density"),
-    col="gray", xlim=NULL, ylim=NULL, main=NULL, x.round=2, x.las=1, \dots)
+  \method{plot}{fdt.default}(x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+    xlab="Class limits", ylab=NULL, col="gray", xlim=NULL, ylim=NULL,
+    main=NULL, x.round=2, x.las=1, \dots)
+  \method{plot}{fdt.multiple}(x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+    xlab="Class limits", ylab=NULL, col="gray", xlim=NULL, ylim=NULL,
+    main=NULL, x.round=2, x.las=1, \dots)
 }
 
 \arguments{
   \item{x}{A \code{fdt} object.}
-  \item{type}{The type of the plot. \code{h} histogram, \code{fp} frequency poligon,
-    \code{rfp} relative frequency poligon, \code{rfpp} relative frequency poligon (\%),
-    \code{cfp} cumulative frequency poligon, \code{cfpp} cumulative frequency poligon (\%).}
-  \item{freq}{Logical; if \code{TRUE}, the histogram graphic is a representation
-    of frequencies, the counts component of the result; if \code{FALSE},
-    probability densities, component density, are plotted (so that the histogram
-    has a total area of one). Defaults to TRUE.}
+  \item{type}{The type of the plot. \code{h} histogram, \code{f} frequency poligon,
+    \code{rf} relative frequency poligon, \code{rfp} relative frequency poligon (\%),
+    \code{d} density, \code{cd} cumulative density, \code{cf} cumulative frequency poligon,
+    \code{cfp} cumulative frequency poligon (\%).}
   \item{xlab}{A label for the x axis.}
   \item{ylab}{A label for the y axis.}
-  \item{col}{A \code{vector} of colors for the histogram.}
+  \item{col}{A \code{vector} of colors.}
   \item{xlim}{The x limits of the plot.}
   \item{ylim}{The x limits of the plot.}
   \item{main}{A title for the plot.}
@@ -70,9 +67,9 @@ library(fdth)
 #======================
 set.seed(1)
 x <- rnorm(n=1e3, mean=5, sd=1)
+d <- fdt(x); d
 
 # Histogram
-d <- fdt(x)
 plot(d)
 plot(d, main='My title')
 plot(d, x.round=3, col='darkgreen')
@@ -80,15 +77,19 @@ plot(d, x.las=1)
 plot(d, x.round=2, x.las=2, xlab=NULL)
 
 # Poligons
-plot(d, type='fp')
+plot(d, type='f')
+plot(d, type='rf', pch=19, col='violet')
 plot(d, type='rfp')
-plot(d, type='rfpp')
+plot(d, type='cf')
 plot(d, type='cfp')
-plot(d, type='cfpp')
+
+# Density
+plot(d, type='d')
+plot(d, type='cd')
 
 # Theoretical curve and fdt
 x <- rnorm(1e5, mean=5, sd=1)
-plot(fdt(x, k=100), ylim=c(0, 0.5), freq=FALSE, col=heat.colors(100))
+plot(fdt(x, k=100), type='d', col=heat.colors(100))
 curve(dnorm(x, mean=5, sd=1), col='darkgreen', add=TRUE, lwd=2)
 
 #=============================================
@@ -102,18 +103,21 @@ mdf <- data.frame(X1 = rep(LETTERS[1:4], 25),
                   Y4 = rnorm(100, 40, 4))
 
 # Histograms
-d <- fdt(mdf)
+d <- fdt(mdf); d
 plot(d, main=TRUE)
-plot(d, freq=FALSE, main=TRUE)
 plot(d, col='darkgreen', ylim=c(0, 40), main=TRUE)
 plot(d, col=rainbow(8), ylim=c(0, 40), main=TRUE)
 
 # Poligons
-plot(d, type='fp')
+plot(d, type='f')
+plot(d, type='rf')
 plot(d, type='rfp')
-plot(d, type='rfpp')
+plot(d, type='cf')
 plot(d, type='cfp')
-plot(d, type='cfpp')
+
+# Density
+plot(d, type='d')
+plot(d, type='cd')
 
 levels(mdf$X1)
 plot(fdt(mdf, k=5, by='X1'), ylim=c(0, 12), main=TRUE)
@@ -129,7 +133,7 @@ plot(fdt(iris, k=5), main=TRUE, col=rainbow(5))
 
 d <- fdt(iris, k=10)
 plot(d, main=TRUE)
-plot(d, main=TRUE, freq=FALSE)
+plot(d, type='d', main=TRUE)
 
 require(MASS)
 levels(Cars93$Origin)

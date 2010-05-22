@@ -1,7 +1,7 @@
 plot.fdt.multiple <-
-function (x, type=c('h', 'fp', 'rfp', 'rfpp', 'cfp', 'cfpp'),
-  freq=TRUE, xlab='Class limits', ylab=ifelse(freq, 'Frequency', 'Density'),
-  col='gray', xlim=NULL, ylim=NULL, main=NULL, x.round=2, x.las=1, ...)
+function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+  xlab='Class limits', ylab=NULL, col='gray',
+  xlim=NULL, ylim=NULL, main=NULL, x.round=2, x.las=1, ...)
 {
   is.wholenumber <- function (x, tol=.Machine$double.eps^0.5)
     abs(x - round(x)) < tol
@@ -34,7 +34,7 @@ function (x, type=c('h', 'fp', 'rfp', 'rfpp', 'cfp', 'cfpp'),
     }
     
     i <- i + 1
-    plot.fdt.default(x[[i]], type=type, freq=freq, xlab=xlab, ylab=ylab, col=col,
+    plot.fdt.default(x[[i]], type=type, xlab=xlab, ylab=ylab, col=col,
       xlim=xlim, ylim=ylim, main=ifelse (is.null(main), '', names(x[i])),
       x.round=x.round, x.las=x.las, ...)
     

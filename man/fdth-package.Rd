@@ -91,7 +91,7 @@ x <- rnorm(n=1e3, mean=5, sd=1)
 
 d <- fdt(x); d
 
-# Plot histogram
+# Histogram
 plot(d)
 plot(d, main='My title')
 plot(d, x.round=3, col='darkgreen')
@@ -99,12 +99,16 @@ plot(d, x.las=2)
 plot(d, x.round=2, x.las=2, xlab=NULL)
 plot(d, x.round=2, x.las=2, xlab=NULL, col=rainbow(11))
 
-# Plot poligon
-plot(d, type='fp')
+# Poligons
+plot(d, type='f')
+plot(d, type='rf', pch=19, col='violet')
 plot(d, type='rfp')
-plot(d, type='rfpp')
+plot(d, type='cf')
 plot(d, type='cfp')
-plot(d, type='cfpp')
+
+# Density
+plot(d, type='d')
+plot(d, type='cd', pch=19, col='green')
 
 # Summary
 d
@@ -129,11 +133,10 @@ d[['breaks']]['start']                    # Stores the left value of the first c
 d[['breaks']]['end']                      # Stores the right value of the last class
 d[['breaks']]['h']                        # Stores the class interval
 as.logical(d[['breaks']]['right'])        # Stores the right option
-str(d[['data']])                          # Stores the data for plot methods
 
 # Theoretical curve and fdt
 x <- rnorm(1e5, mean=5, sd=1)
-plot(fdt(x, k=100), ylim=c(0, 0.5), freq=FALSE, col=heat.colors(100))
+plot(fdt(x, k=100), type='d', col=heat.colors(100))
 curve(dnorm(x, mean=5, sd=1), col='darkgreen', add=TRUE, lwd=2)
 
 #=============================================
@@ -148,18 +151,21 @@ mdf <- data.frame(X1 = rep(LETTERS[1:4], 25),
 
 d <- fdt(mdf); d
 
-# Plot histograms
+# Histograms
 plot(d, main=TRUE)
-plot(d, freq=FALSE, main=TRUE)
 plot(d, col='darkgreen', ylim=c(0, 40), main=TRUE)
-plot(d, freq=FALSE, col=rainbow(8), main=TRUE)
+plot(d, col=rainbow(8), main=TRUE)
 
-# Plot poligons
-plot(d, type='fp')
+# Poligons
+plot(d, type='f')
+plot(d, type='rf', pch=19, col='violet')
 plot(d, type='rfp')
-plot(d, type='rfpp')
+plot(d, type='cf')
 plot(d, type='cfp')
-plot(d, type='cfpp')
+
+# Density
+plot(d, type='d')
+plot(d, type='cd')
 
 # Summary
 d

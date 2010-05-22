@@ -8,7 +8,7 @@ function (x, k, breaks=c('Sturges', 'Scott', 'FD'),
   for (i in 1:ncol(x)) {
     m      <- as.matrix(x[ ,i])
     fdt    <- make.fdt.multiple(m, k, breaks, right)
-    tmpres <- list(table=fdt[[1]], breaks=fdt[[2]], data=fdt[[3]])
+    tmpres <- list(table=fdt[[1]], breaks=fdt[[2]])
     res    <- c(res, list(tmpres))
   }
 

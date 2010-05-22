@@ -30,7 +30,7 @@ function (x, k, breaks=c('Sturges', 'Scott', 'FD'),
   fdt <- make.fdt.simple(x, start, end, h, right)
   breaks <- c(start, end, h, ifelse (right, 1, 0))
   names(breaks) <- c('start', 'end', 'h', 'right')
-  res <- list(table=fdt, breaks=breaks, data=x)
+  res <- list(table=fdt, breaks=breaks)
   return (res)
 }
 

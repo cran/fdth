@@ -1,8 +1,13 @@
+2010-05-22  vs. 1.1-1 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
+
+  * The slot data was removed from the fdt object
+  * The methods plot.default and plot.multiple were improved
+
 2010-05-20  vs. 1.1.0 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
 
   * Released to CRAN
 
-2010-05-16  vs. 1.0.0 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
+2010-05-16  vs. 1.0 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
 
   * Restrict to testers
 

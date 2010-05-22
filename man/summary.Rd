@@ -94,7 +94,6 @@ d[['breaks']]['start']                    # Stores the left value of the first c
 d[['breaks']]['end']                      # Stores the right value of the last class
 d[['breaks']]['h']                        # Stores the class interval
 as.logical(d[['breaks']]['right'])        # Stores the right option
-str(d[['data']])                          # Stores the data for plot methods
 
 #=============================================
 # Data.frames: multivariated with categorical

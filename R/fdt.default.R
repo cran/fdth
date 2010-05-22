@@ -50,8 +50,7 @@ function (x, k, start, end, h, breaks=c('Sturges', 'Scott', 'FD'),
   fdt           <- make.fdt.simple(x, start, end, h, right)
   breaks        <- c(start, end, h, ifelse (right, 1, 0))
   names(breaks) <- c('start', 'end', 'h', 'right')
-  data          <- x
-  res           <- list(table=fdt, breaks=breaks, data=data)
+  res           <- list(table=fdt, breaks=breaks)
   class(res)    <- c('fdt.default', 'list')
   invisible(res)
 }
