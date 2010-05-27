@@ -91,7 +91,7 @@ x <- rnorm(n=1e3, mean=5, sd=1)
 
 d <- fdt(x); d
 
-# Histogram
+# Histograms
 plot(d)
 plot(d, main='My title')
 plot(d, x.round=3, col='darkgreen')
@@ -99,16 +99,23 @@ plot(d, x.las=2)
 plot(d, x.round=2, x.las=2, xlab=NULL)
 plot(d, x.round=2, x.las=2, xlab=NULL, col=rainbow(11))
 
+plot(d, type='fh')
+plot(d, type='rfh')
+plot(d, type='rfph')
+plot(d, type='cdh')
+plot(d, type='cfh')
+plot(d, type='cfph')
+
 # Poligons
-plot(d, type='f')
-plot(d, type='rf', pch=19, col='violet')
+plot(d, type='fp')
 plot(d, type='rfp')
-plot(d, type='cf')
+plot(d, type='rfpp')
+plot(d, type='cdp')
 plot(d, type='cfp')
+plot(d, type='cfpp') 
 
 # Density
 plot(d, type='d')
-plot(d, type='cd', pch=19, col='green')
 
 # Summary
 d
@@ -156,16 +163,23 @@ plot(d, main=TRUE)
 plot(d, col='darkgreen', ylim=c(0, 40), main=TRUE)
 plot(d, col=rainbow(8), main=TRUE)
 
+plot(d, type='fh')
+plot(d, type='rfh')
+plot(d, type='rfph')
+plot(d, type='cdh')
+plot(d, type='cfh')
+plot(d, type='cfph')
+
 # Poligons
-plot(d, type='f')
-plot(d, type='rf', pch=19, col='violet')
+plot(d, type='fp')
 plot(d, type='rfp')
-plot(d, type='cf')
+plot(d, type='rfpp')
+plot(d, type='cdp')
 plot(d, type='cfp')
+plot(d, type='cfpp') 
 
 # Density
-plot(d, type='d')
-plot(d, type='cd')
+plot(d, type='d') 
 
 # Summary
 d

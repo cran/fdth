@@ -1,5 +1,6 @@
 plot.fdt.multiple <-
-function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+function (x, type=c('fh', 'fp', 'rfh', 'rfp', 'rfph', 'rfpp',
+  'd', 'cdh', 'cdp', 'cfh', 'cfp', 'cfph', 'cfpp'),
   xlab='Class limits', ylab=NULL, col='gray',
   xlim=NULL, ylim=NULL, main=NULL, x.round=2, x.las=1, ...)
 {

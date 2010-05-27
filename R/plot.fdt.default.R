@@ -1,5 +1,6 @@
 plot.fdt.default <-
-function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+function (x, type=c('fh', 'fp', 'rfh', 'rfp', 'rfph', 'rfpp',
+  'd', 'cdh', 'cdp', 'cfh', 'cfp', 'cfph', 'cfpp'),
   xlab='Class limits', ylab=NULL, col='gray',
   xlim=NULL, ylim=NULL, main=NULL, x.round=2, x.las=1, ...)
 {
@@ -9,8 +10,8 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
     xlim <- with(x, c(breaks['start'], breaks['end']))
 
   switch(match.arg(type),
-    # Absolut frequency - histogram
-    h = {
+    # f (absolut frequency) - histogram
+    fh = {
       if (is.null(ylim))
         ylim <- with(x, c(0, 1.2 * max(table[, 2])))
 
@@ -21,12 +22,13 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
       plot.window(xlim, ylim)
       title(main=main, xlab=xlab, ylab=ylab, ...)
       axis(2, ...)
-      rect(breaks[-length(breaks)], 0, breaks[-1], x$table[, 2],
+      y <- x$table[, 2]
+      rect(breaks[-length(breaks)], 0, breaks[-1], y,
            col=col, ...)
     },
     
-    # Absolut frequency - poligon
-    f = {
+    # f (absolut frequency) - poligon
+    fp = {
       if (is.null(ylim))
         ylim <- with(x, c(0, 1.2 * max(table[, 2])))
 
@@ -40,8 +42,26 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
            col=col, main=main, ...)
     },
     
-    # Relative frequency - poligon
-    rf = {
+    # rf (relative frequency) - histogram
+    rfh = {
+      h <- with(x, breaks[3])
+      if (is.null(ylim))
+        ylim <- with(x, c(0, 1.2 * max(table[, 3])))
+
+      if(is.null(ylab))
+        ylab <- 'Frequency'
+
+      plot.new()
+      plot.window(xlim, ylim)
+      title(main=main, xlab=xlab, ylab=ylab, ...)
+      axis(2, ...)
+      y <- x$table[, 3]
+      rect(breaks[-length(breaks)], 0, breaks[-1], y,
+           col=col, ...)
+    },  
+
+    # rf (relative frequency) - poligon
+    rfp = {
       if (is.null(ylim))
         ylim <- with(x, c(0, 1.2 * max(table[, 3])))
 
@@ -55,8 +75,26 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
            col=col, main=main, ...)
     },
 
-    # Relative frequency (%) - poligon
-    rfp = {
+    # rf (relative frequency %) - histogram
+    rfph = {
+      h <- with(x, breaks[3])
+      if (is.null(ylim))
+        ylim <- with(x, c(0, 1.2 * max(table[, 4])))
+
+      if(is.null(ylab))
+        ylab <- 'Frequency'
+
+      plot.new()
+      plot.window(xlim, ylim)
+      title(main=main, xlab=xlab, ylab=ylab, ...)
+      axis(2, ...)
+      y <- x$table[, 4]
+      rect(breaks[-length(breaks)], 0, breaks[-1], y,
+           col=col, ...)
+    },  
+
+    # rf (relative frequency %) - poligon
+    rfpp = {
       if (is.null(ylim))
         ylim <- with(x, c(0, 1.2 * max(table[, 4])))
 
@@ -88,9 +126,26 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
            col=col, ...)
     },  
 
-    # Cumulative density
-    cd = {
+    # cd (cumulative density) - histogram
+    cdh = {
       h <- with(x, breaks[3])
+      if (is.null(ylim))
+        ylim <- with(x, c(0, 1.2))
+
+      if(is.null(ylab))
+        ylab <- 'Cumulative density'
+
+      plot.new()
+      plot.window(xlim, ylim)
+      title(main=main, xlab=xlab, ylab=ylab, ...)
+      axis(2, ...)
+      y <- cumsum(x$table[, 3])
+      rect(breaks[-length(breaks)], 0, breaks[-1], y,
+           col=col, ...)
+    },  
+
+    # cm (cumulative density) - poligon
+    cdp = {
       if (is.null(ylim))
         ylim <- with(x, c(0, 1.2))
 
@@ -103,8 +158,26 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
            col=col, main=main, ...)
     }, 
     
-    # Cumulative frequency - poligon
-    cf = {
+    # cf (cumulative frequency) - histogram
+    cfh = {
+      h <- with(x, breaks[3])
+      if (is.null(ylim))
+        ylim <- with(x, c(0, 1.2 * max(table[, 5])))
+
+      if(is.null(ylab))
+        ylab <- 'Frequency'
+
+      plot.new()
+      plot.window(xlim, ylim)
+      title(main=main, xlab=xlab, ylab=ylab, ...)
+      axis(2, ...)
+      y <- x$table[, 5]
+      rect(breaks[-length(breaks)], 0, breaks[-1], y,
+           col=col, ...)
+    },  
+
+    # cf (cumulative frequency) - poligon
+    cfp = {
       if (is.null(ylim))
         ylim <- with(x, c(0, 1.2 * sum(table['f'])))
 
@@ -117,8 +190,26 @@ function (x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
            col=col, main=main, ...)
     },
 
-    # Cumulative frequency (%) - poligon
-    cfp = {
+    # cfp (cumulative frequency %) - histogram
+    cfph = {
+      h <- with(x, breaks[3])
+      if (is.null(ylim))
+        ylim <- with(x, c(0, 1.2 * max(table[, 6])))
+
+      if(is.null(ylab))
+        ylab <- 'Frequency'
+
+      plot.new()
+      plot.window(xlim, ylim)
+      title(main=main, xlab=xlab, ylab=ylab, ...)
+      axis(2, ...)
+      y <- x$table[, 6]
+      rect(breaks[-length(breaks)], 0, breaks[-1], y,
+           col=col, ...)
+    },  
+
+    # cfp (cumulative frequency %) - poligon
+    cfpp = {
       if (is.null(ylim))
         ylim <- c(0, 1.2 * 100)
 

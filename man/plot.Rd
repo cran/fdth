@@ -14,25 +14,37 @@
 }
 
 \usage{
-  \method{plot}{fdt.default}(x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+  \method{plot}{fdt.default}(x, type=c('fh', 'fp', 'rfh', 'rfp', 'rfph', 'rfpp',
+    'd', 'cdh', 'cdp', 'cfh', 'cfp', 'cfph', 'cfpp'),
     xlab="Class limits", ylab=NULL, col="gray", xlim=NULL, ylim=NULL,
     main=NULL, x.round=2, x.las=1, \dots)
-  \method{plot}{fdt.multiple}(x, type=c('h', 'f', 'rf', 'rfp', 'd', 'cd', 'cf', 'cfp'),
+  \method{plot}{fdt.multiple}(x, type=c('fh', 'fp', 'rfh', 'rfp', 'rfph', 'rfpp',
+    'd', 'cdh', 'cdp', 'cfh', 'cfp', 'cfph', 'cfpp'),
     xlab="Class limits", ylab=NULL, col="gray", xlim=NULL, ylim=NULL,
     main=NULL, x.round=2, x.las=1, \dots)
 }
 
 \arguments{
   \item{x}{A \code{fdt} object.}
-  \item{type}{The type of the plot. \code{h} histogram, \code{f} frequency poligon,
-    \code{rf} relative frequency poligon, \code{rfp} relative frequency poligon (\%),
-    \code{d} density, \code{cd} cumulative density, \code{cf} cumulative frequency poligon,
-    \code{cfp} cumulative frequency poligon (\%).}
+  \item{type}{The type of the plot.
+    \code{fh:} Absolut frequency histogram,
+    \code{fp:} Absolut frequency poligon,
+    \code{rfh:} Relative frequency histogram,
+    \code{rfp:} Relative frequency poligon,
+    \code{rfph:} Relative frequency (\%) histogram ,
+    \code{rfpp:} Relative frequency (\%) poligon,
+    \code{d:} Density,
+    \code{cdh:} Cumulative density histogram,
+    \code{cdp:} Cumulative density poligon,
+    \code{cfh:} Cumulative frequency histogram,
+    \code{cfp:} Cumulative frequency poligon,
+    \code{cdph} cumulative frequency (\%) histogram,
+    \code{cfpp:} cumulative frequency (\%) poligon.}
   \item{xlab}{A label for the x axis.}
   \item{ylab}{A label for the y axis.}
   \item{col}{A \code{vector} of colors.}
   \item{xlim}{The x limits of the plot.}
-  \item{ylim}{The x limits of the plot.}
+  \item{ylim}{The y limits of the plot.}
   \item{main}{A title for the plot.}
   \item{x.round}{A numeric value to round the x ticks.}
   \item{x.las}{An integer which controls the orientation of the x axis labels
@@ -69,23 +81,31 @@ set.seed(1)
 x <- rnorm(n=1e3, mean=5, sd=1)
 d <- fdt(x); d
 
-# Histogram
+# Histograms
 plot(d)
 plot(d, main='My title')
 plot(d, x.round=3, col='darkgreen')
-plot(d, x.las=1)
+plot(d, x.las=2)
 plot(d, x.round=2, x.las=2, xlab=NULL)
+plot(d, x.round=2, x.las=2, xlab=NULL, col=rainbow(11))
+
+plot(d, type='fh')
+plot(d, type='rfh')
+plot(d, type='rfph')
+plot(d, type='cdh')
+plot(d, type='cfh')
+plot(d, type='cfph')
 
 # Poligons
-plot(d, type='f')
-plot(d, type='rf', pch=19, col='violet')
+plot(d, type='fp')
 plot(d, type='rfp')
-plot(d, type='cf')
+plot(d, type='rfpp')
+plot(d, type='cdp')
 plot(d, type='cfp')
+plot(d, type='cfpp') 
 
 # Density
-plot(d, type='d')
-plot(d, type='cd')
+plot(d, type='d') 
 
 # Theoretical curve and fdt
 x <- rnorm(1e5, mean=5, sd=1)
@@ -108,16 +128,23 @@ plot(d, main=TRUE)
 plot(d, col='darkgreen', ylim=c(0, 40), main=TRUE)
 plot(d, col=rainbow(8), ylim=c(0, 40), main=TRUE)
 
+plot(d, type='fh')
+plot(d, type='rfh')
+plot(d, type='rfph')
+plot(d, type='cdh')
+plot(d, type='cfh')
+plot(d, type='cfph')
+
 # Poligons
-plot(d, type='f')
-plot(d, type='rf')
+plot(d, type='fp')
 plot(d, type='rfp')
-plot(d, type='cf')
+plot(d, type='rfpp')
+plot(d, type='cdp')
 plot(d, type='cfp')
+plot(d, type='cfpp') 
 
 # Density
-plot(d, type='d')
-plot(d, type='cd')
+plot(d, type='d')     
 
 levels(mdf$X1)
 plot(fdt(mdf, k=5, by='X1'), ylim=c(0, 12), main=TRUE)

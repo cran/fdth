@@ -107,8 +107,8 @@ d <- fdt(x, start=1.5, end=9); d
 d <- fdt(x, start=1, end=9, h=1); d
 
 # Effect of right
-x  <- rep(1:3, 3); sort(x)
-d <-fdt(x, start=1, end=4, h=1); d
+x <- rep(1:3, 3); sort(x)
+d <- fdt(x, start=1, end=4, h=1); d
 
 d <- fdt(x, start=0, end=3, h=1, right=TRUE); d
 
