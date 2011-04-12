@@ -143,12 +143,6 @@ d <- fdt(iris, k=10); d
 levels(iris$Species)
 d <- fdt(iris, k=5, by='Species'); d
 
-require(MASS)
-levels(Cars93$Origin)
-d <- fdt(Cars93, k=5, by='Origin'); d
-
-d <- fdt(Cars93, breaks='FD', by='Origin'); d
-
 #=========================
 # Matrices: multivariated
 #=========================

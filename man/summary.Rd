@@ -132,10 +132,6 @@ summary(fdt(iris, k=5), format=TRUE, patter='\%04.2f')
 levels(iris$Species)
 summary(fdt(iris, k=5, by='Species'), format=TRUE, patter='\%04.2f')
 
-require(MASS)
-levels(Cars93$Origin)
-summary(fdt(Cars93, k=5, by='Origin'), format=TRUE)
-
 #=========================
 # Matrices: multivariated
 #=========================

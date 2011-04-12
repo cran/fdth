@@ -162,12 +162,6 @@ d <- fdt(iris, k=10)
 plot(d, main=TRUE)
 plot(d, type='d', main=TRUE)
 
-require(MASS)
-levels(Cars93$Origin)
-plot(fdt(Cars93, k=5, by='Origin'), col=heat.colors(5), main=TRUE)
-
-plot(fdt(Cars93, breaks='FD', by='Origin'), main=TRUE)
-
 #=========================
 # Matrices: multivariated
 #=========================

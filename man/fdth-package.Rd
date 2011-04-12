@@ -209,12 +209,6 @@ levels(iris$Species)
 summary(fdt(iris, k=5, by='Species'), format=TRUE, patter='\%04.2f')
 plot(fdt(iris, k=5, by='Species'), main=TRUE)
 
-# Big fdt
-require(MASS)
-levels(Cars93$Origin)
-summary(fdt(Cars93, k=5, by='Origin'), format=TRUE)
-plot(fdt(Cars93, k=5, by='Origin'), col=heat.colors(5), main=TRUE)
-
 #=========================
 # Matrices: multivariated
 #=========================
