@@ -1,20 +1,20 @@
 summary.fdt.multiple <-
-function (object, columns=1:6, round=2, format.classes=FALSE,
-pattern='%09.3e', ...)
-{
-  right  <- as.logical(object[[1]][['breaks']]['right'])
-  tnames <- names(object)
-  for (i in 1:length(tnames)) {
-    res <- object[tnames[i]][[tnames[i]]][['table']]
-    res <- cbind(res[, 1], round(res[, 2:6], round))[columns]
-    cat(tnames[i], '\n')
-    if (format.classes) {
-      tmp      <- as.character(res[, 1])
-      res[, 1] <- make.fdt.format.classes(tmp, right, pattern)
+  function (object, columns=1:6, round=2, format.classes=FALSE,
+            pattern='%09.3e', ...)
+  {
+    right  <- as.logical(object[[1]][['breaks']]['right'])
+    tnames <- names(object)
+    for (i in 1:length(tnames)) {
+      res <- object[tnames[i]][[tnames[i]]][['table']]
+      res <- cbind(res[, 1], round(res[, 2:6], round))[columns]
+      cat(tnames[i], '\n')
+      if (format.classes) {
+        tmp      <- as.character(res[, 1])
+        res[, 1] <- make.fdt.format.classes(tmp, right, pattern)
+      }
+      names(res) <- c('Class limits', 'f', 'rf', 'rf(%)', 'cf', 'cf(%)')[columns]
+      print(res, row.names=FALSE)
+      cat('\n')
     }
-    names(res) <- c('Class limits', 'f', 'rf', 'rf(%)', 'cf', 'cf(%)')[columns]
-    print(res, row.names=FALSE)
-    cat('\n')
   }
-}
 

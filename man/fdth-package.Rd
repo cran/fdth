@@ -88,34 +88,33 @@ library (fdth)
 #======================
 set.seed(1)
 x <- rnorm(n=1e3, mean=5, sd=1)
-
 d <- fdt(x); d
 
 # Histograms
-plot(d)
+plot(d)                # Absolut frequency histogram
 plot(d, main='My title')
 plot(d, x.round=3, col='darkgreen')
 plot(d, x.las=2)
-plot(d, x.round=2, x.las=2, xlab=NULL)
-plot(d, x.round=2, x.las=2, xlab=NULL, col=rainbow(11))
+plot(d, x.round=3, x.las=2, xlab=NULL)
+plot(d, v=TRUE, cex=.8, x.round=3, x.las=2, xlab=NULL, col=rainbow(11))
 
-plot(d, type='fh')
-plot(d, type='rfh')
-plot(d, type='rfph')
-plot(d, type='cdh')
-plot(d, type='cfh')
-plot(d, type='cfph')
+plot(d, type='fh')     # Absolut frequency histogram
+plot(d, type='rfh')    # Relative frequency histogram
+plot(d, type='rfph')   # Relative frequency (%) histogram
+plot(d, type='cdh')    # Cumulative density histogram
+plot(d, type='cfh')    # Cumulative frequency histogram
+plot(d, type='cfph')   # Cumulative frequency (%) histogram
 
 # Poligons
-plot(d, type='fp')
-plot(d, type='rfp')
-plot(d, type='rfpp')
-plot(d, type='cdp')
-plot(d, type='cfp')
-plot(d, type='cfpp') 
+plot(d, type='fp')     # Absolut frequency poligon
+plot(d, type='rfp')    # Relative frequency poligon
+plot(d, type='rfpp')   # Relative frequency (%) poligon
+plot(d, type='cdp')    # Cumulative density poligon
+plot(d, type='cfp')    # Cumulative frequency poligon
+plot(d, type='cfpp')   # Cumulative frequency (%) poligon
 
 # Density
-plot(d, type='d')
+plot(d, type='d')      # Density
 
 # Summary
 d
@@ -159,9 +158,9 @@ mdf <- data.frame(X1 = rep(LETTERS[1:4], 25),
 d <- fdt(mdf); d
 
 # Histograms
-plot(d, main=TRUE)
-plot(d, col='darkgreen', ylim=c(0, 40), main=TRUE)
-plot(d, col=rainbow(8), main=TRUE)
+plot(d, v=TRUE)
+plot(d, col='darkgreen')
+plot(d, col=rainbow(8))
 
 plot(d, type='fh')
 plot(d, type='rfh')
@@ -171,7 +170,7 @@ plot(d, type='cfh')
 plot(d, type='cfph')
 
 # Poligons
-plot(d, type='fp')
+plot(d, v=TRUE, type='fp')
 plot(d, type='rfp')
 plot(d, type='rfpp')
 plot(d, type='cdp')
@@ -196,27 +195,27 @@ print(d, col=c(1:2, 4, 6), format=TRUE, pattern='\%05.2f')
 # Using by
 levels(mdf$X1)
 summary(fdt(mdf, k=5, by='X1'))
-plot(fdt(mdf, k=5, by='X1'), col=rainbow(5), main=TRUE)
+plot(fdt(mdf, k=5, by='X1'), col=rainbow(5))
 
 levels(mdf$X2)
 summary(fdt(mdf, breaks='FD', by='X2'), round=3)
-plot(fdt(mdf, breaks='FD', by='X2'), main=TRUE)
+plot(fdt(mdf, breaks='FD', by='X2'))
 
 summary(fdt(iris, k=5), format=TRUE, patter='\%04.2f')
-plot(fdt(iris, k=5), col=rainbow(5), main=TRUE)
+plot(fdt(iris, k=5), col=rainbow(5))
 
 levels(iris$Species)
 summary(fdt(iris, k=5, by='Species'), format=TRUE, patter='\%04.2f')
-plot(fdt(iris, k=5, by='Species'), main=TRUE)
+plot(fdt(iris, k=5, by='Species'), v=TRUE)
 
 #=========================
 # Matrices: multivariated
 #=========================
 summary(fdt(state.x77), col=c(1:2, 4, 6), format=TRUE)
-plot(fdt(state.x77), main=TRUE)
+plot(fdt(state.x77))
 
 # Very big
 summary(fdt(volcano, right=TRUE), col=c(1:2, 4, 6), round=3, format=TRUE,
   pattern='\%05.1f')
-plot(fdt(volcano, right=TRUE), main=TRUE)
+plot(fdt(volcano, right=TRUE))
 }
