@@ -48,7 +48,6 @@ plot.fdt.multiple <-
                        xlim=xlim, ylim=ylim,
                        main=main[i],
                        x.round=x.round, x.las=x.las, ...)
-      if (i == length(x)) break
-    }
+      if (i == length(x)) break}
   }
 

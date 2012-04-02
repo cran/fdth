@@ -30,8 +30,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},
 
            # f (absolut frequency) - poligon
            fp = {
@@ -46,8 +45,7 @@ plot.fdt.default <-
                   xlim=xlim, ylim=ylim, xlab=xlab, ylab=ylab,
                   col=col, main=main, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},
 
            # rf (relative frequency) - histogram
            rfh = {
@@ -66,8 +64,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },  
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},  
 
            # rf (relative frequency) - poligon
            rfp = {
@@ -82,8 +79,7 @@ plot.fdt.default <-
                   xlim=xlim, ylim=ylim, xlab=xlab, ylab=ylab,
                   col=col, main=main, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},
 
            # rf (relative frequency %) - histogram
            rfph = {
@@ -102,8 +98,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },  
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},  
 
            # rf (relative frequency %) - poligon
            rfpp = {
@@ -118,8 +113,7 @@ plot.fdt.default <-
                   xlim=xlim, ylim=ylim, xlab=xlab, ylab=ylab,
                   col=col, main=main, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},
 
            # Density
            d = {
@@ -138,8 +132,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },  
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},  
 
            # cd (cumulative density) - histogram
            cdh = {
@@ -158,8 +151,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },  
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},  
 
            # cm (cumulative density) - poligon
            cdp = {
@@ -174,8 +166,7 @@ plot.fdt.default <-
                   xlim=xlim, ylim=ylim, xlab=xlab, ylab=ylab,
                   col=col, main=main, ...)
              if(v)
-               text(x=breaks, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           }, 
+               text(x=breaks, y=y, labels=round(y, v.round), pos=v.pos, ...)}, 
 
            # cf (cumulative frequency) - histogram
            cfh = {
@@ -194,8 +185,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },  
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},  
 
            # cf (cumulative frequency) - poligon
            cfp = {
@@ -210,8 +200,7 @@ plot.fdt.default <-
                   xlim=xlim, ylim=ylim, xlab=xlab, ylab=ylab,
                   col=col, main=main, ...)
              if(v)
-               text(x=breaks, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },
+               text(x=breaks, y=y, labels=round(y, v.round), pos=v.pos, ...)},
 
            # cfp (cumulative frequency %) - histogram
            cfph = {
@@ -230,8 +219,7 @@ plot.fdt.default <-
              rect(breaks[-length(breaks)], 0, breaks[-1], y,
                   col=col, ...)
              if(v)
-               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           },  
+               text(x=mids, y=y, labels=round(y, v.round), pos=v.pos, ...)},  
 
            # cfp (cumulative frequency %) - poligon
            cfpp = {
@@ -246,8 +234,7 @@ plot.fdt.default <-
                   xlim=xlim, ylim=ylim, xlab=xlab, ylab=ylab,
                   col=col, main=main, ...)
              if(v)
-               text(x=breaks, y=y, labels=round(y, v.round), pos=v.pos, ...)
-           })
+               text(x=breaks, y=y, labels=round(y, v.round), pos=v.pos, ...)})
 
     axis(1, at=round(breaks, x.round), las=x.las, ...)
   }

@@ -5,13 +5,11 @@
 \alias{fdt.matrix}
 
 \title{
-  Frequency Distribution Table
-}
+  Frequency Distribution Table}
 
 \description{
   A S3 set of methods to easily perform frequency distribution table (fdt) from
-  \code{vector}, \code{data.frame} and \code{matrix} objects.
-}
+  \code{vector}, \code{data.frame} and \code{matrix} objects.}
 
 \usage{
   fdt(x, \dots)
@@ -21,8 +19,7 @@
   \method{fdt}{data.frame}(x, k, by, breaks=c("Sturges", "Scott", "FD"),
     right=FALSE, \dots)
   \method{fdt}{matrix}(x, k, breaks=c("Sturges", "Scott", "FD"),
-    right=FALSE, \dots)
-}
+    right=FALSE, \dots)}
 
 \arguments{
   \item{x}{A numeric \code{vector}, \code{data.frame} or \code{matrix} object.
@@ -37,8 +34,7 @@
   \item{breaks}{Method used to determine the number of interval classes, 
     c("Sturges", "Scott", "FD").}
   \item{right}{Right endpoints open (default = FALSE).}
-  \item{\dots}{Potencial further arguments (required by generic).}
-}
+  \item{\dots}{Potencial further arguments (required by generic).}}
 
 \details{
   The simplest way to run \code{fdt} is done by supplying only the \code{x}
@@ -54,8 +50,7 @@
   \code{print} and \code{plot}. The result of plot is a histogram.
   The methods \code{summary}, \code{print} and \code{plot} provide a reasonable
   set of parameters to format and plot the \code{fdt} object in a pretty
-  (and publishable) way.
-}
+  (and publishable) way.}
 
 \value{
   The method \code{fdt.default} returns a list of class \code{fdt.default}
@@ -68,19 +63,16 @@
   The methods \code{fdt.data.frame} and \code{fdt.matrix} return a list of class 
   \code{fdt.multiple}. This \code{list} has one slot for each numeric
   variable of the \code{x} provided. Each slot, corresponding to each numeric
-  variable, stores the same slots of the \code{fdt.default} described above.
-}
+  variable, stores the same slots of the \code{fdt.default} described above.}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
 
 \seealso{
  \code{\link[graphics]{hist}} provided by \code{graphics};
  \code{\link[base]{table}}, \code{\link[base]{cut}} both provided by \code{base}
- and \code{\link[Hmisc]{hist.data.frame}} provided by \code{Hmisc} package.
-}
+ and \code{\link[Hmisc]{hist.data.frame}} provided by \code{Hmisc} package.}
 
 \examples{
 library(fdth)

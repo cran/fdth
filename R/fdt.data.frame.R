@@ -13,12 +13,9 @@ fdt.data.frame <-
           m      <- as.matrix(x[ ,i])
           fdt    <- make.fdt.multiple(m, k, breaks, right)
           tmpres <- list(table=fdt[[1]], breaks=fdt[[2]])
-          res    <- c(res, list(tmpres))
-        }
-      }
+          res    <- c(res, list(tmpres))}}
       valCol     <- logCol[logCol]
-      names(res) <- names(valCol)
-    }
+      names(res) <- names(valCol)}
 
     # User defines one factor
     else {
@@ -40,11 +37,7 @@ fdt.data.frame <-
             nameY        <- names(logCol[j])
             nameFY       <- paste(nameF,'.', nameY, sep="")
             names(newFY) <- sub(' +$', '', nameFY)
-            res          <- c(res, newFY)
-          }
-        }
-      }
-    }
+            res          <- c(res, newFY)}}}}
 
     class(res) <- c('fdt.multiple', 'list')
     invisible(res)

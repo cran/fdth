@@ -4,14 +4,12 @@
 \alias{plot.fdt.multiple}
 
 \title{
-  Plot fdt.default and fdt.multiple objects
-}
+  Plot fdt.default and fdt.multiple objects}
 
 \description{
   S3 methods for \code{fdt.default} and \code{fdt.multiple} objects.
   It is possible to plot histograms and poligons (absolute, relative
-  and cumulative).
-}
+  and cumulative).}
 
 \usage{
 \method{plot}{fdt.default}(x, type=c('fh', 'fp', 'rfh', 'rfp', 'rfph', 'rfpp',
@@ -24,8 +22,7 @@
   'd', 'cdh', 'cdp', 'cfh', 'cfp', 'cfph', 'cfpp'),
   v=FALSE, v.round=2, v.pos=3,
   xlab="Class limits", ylab=NULL, col="gray", xlim=NULL, ylim=NULL,
-  main=NULL, main.vars=TRUE, x.round=2, x.las=1, \dots)
-}
+  main=NULL, main.vars=TRUE, x.round=2, x.las=1, \dots)}
 
 \arguments{
   \item{x}{A \code{fdt} object.}
@@ -60,8 +57,7 @@
   \item{x.las}{An integer which controls the orientation of the x axis labels
     (0: parallel to the axes, 1: horizontal, 2: perpendicular to the axes,
     3: vertical)}
-  \item{\dots}{Optional plotting parameters.}
-}
+  \item{\dots}{Optional plotting parameters.}}
 
 \details{
   The result is a single histogram or poligon (absolute, relative or cummulative)
@@ -69,17 +65,14 @@
   cummulative) for \code{fdt.multiple} objects.
   Both \code{default and multiple} try to compute the maximum number of histograms
   that will fit on one page, then it draws a matrix of histograms. More than one
-  graphical device may be opened to show all histograms.
-}
+  graphical device may be opened to show all histograms.}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
 
 \seealso{
-  \code{\link[Hmisc]{hist.data.frame}} provided by \code{Hmisc} package.
-}
+  \code{\link[Hmisc]{hist.data.frame}} provided by \code{Hmisc} package.}
 
 \examples{
 library(fdth)

@@ -2,31 +2,25 @@
 \alias{summary.fdt}
 \alias{summary.fdt.default}
 \alias{summary.fdt.multiple}
-\alias{print.fdt.default}
-\alias{print.fdt.multiple}
 
 \title{
-  Summary and Print Methods for fdt Objects
-}
+  Summary Methods for fdt Objects}
 
 \description{
-  S3 methods to return (and print) a \code{data.frame} (the frequency
+  S3 methods to return a \code{data.frame} (the frequency
   distribution table - fdt) for \code{fdt.default} and \code{fdt.multiple}
-  objects.
-}
+  objects.}
 
 \usage{
   \method{summary}{fdt.default}(object, columns=1:6, round=2,
-    format.classes=FALSE, pattern="\%09.3e", \dots)
+    format.classes=FALSE, pattern="\%09.3e", row.names=FALSE, right=TRUE,
+    Sweave=FALSE, \dots)
   \method{summary}{fdt.multiple}(object, columns=1:6, round=2,
-    format.classes=FALSE, pattern="\%09.3e", \dots)
-  \method{print}{fdt.default}(x, \dots)
-  \method{print}{fdt.multiple}(x, \dots)
-}
+    format.classes=FALSE, pattern="\%09.3e", row.names=FALSE, right=TRUE,
+    Sweave=FALSE, \dots)}
 
 \arguments{
   \item{object}{A \code{fdt} object.}
-  \item{x}{A \code{fdt} object.}
   \item{columns}{A \code{vector} of \code{integers} to select colums of the
     \code{data.frame} table.}
   \item{round}{Rounds the fractionary columns of fdt to the specified number of
@@ -35,12 +29,15 @@
     data.frame table will be formated using regular expression. The default is
     "\%09.3e".}
   \item{pattern}{Same as \code{fmt} in \code{\link[base]{sprintf}}.}
-  \item{\dots}{Potential further arguments (require by generic).}
-}
+  \item{row.names}{Logical (or character vector), indicating whether (or what)
+    row names should be printed. The default is \code{FALSE}.}
+  \item{right}{Logical, indicating whether or not strings should be right-aligned.
+    The default is right-alignment.}
+  \item{Sweave}{Logical, indicating whether or not called under Sweave.
+    The default is \code{FALSE}.}
+  \item{\dots}{Potential further arguments (require by generic).}}
 
 \details{
-  The methods \code{print} and \code{show} are wrappers for the method \code{summary}.
-  
   It is possible to select what columns of the table (a \code{data.frame})
   will be shown, as well as the pattern of the first column. The columns are:
   1 = \code{Class limits}, 2 = \code{f} (absolut frequency),
@@ -48,18 +45,15 @@
   5 = \code{cf} (cumulative frequency), 6 = \code{cf(\%)} (cumulative frequency, \%).
  
   The available parameters offer an easy and powerful way to format the fdt for
-  publications and other purposes.
-}
+  publications and other purposes.}
 
 \value{
   A single \code{data.frame} for \code{fdt.default} or multiple
-  \code{data.frames} for \code{fdt.multiple}.
-}
+  \code{data.frames} for \code{fdt.multiple}.}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
 
 \examples{
 library (fdth)
@@ -73,10 +67,7 @@ x <- rnorm(n=1e3, mean=5, sd=1)
 d <- fdt(x)
 str(d)
 
-d
 summary(d) # the same
-print(d)   # the same
-show(d)    # the same
 summary(d, format=TRUE)                   # It can not be what you want to publications!
 summary(d, format=TRUE, pattern='\%.2f')   # Huumm ..., good, but ... Can it be better?
 summary(d,
@@ -106,12 +97,9 @@ mdf <- data.frame(X1 = rep(LETTERS[1:4], 25),
                   Y4 = rnorm(100, 40, 4))
 
 d <- fdt(mdf)
-d
 
 str(d)
 summary(d) # the same
-print(d)   # the same
-show(d)    # the same
 summary(d, format=TRUE)
 summary(d, format=TRUE, pattern='\%05.2f') # regular expression
 summary(d, col=c(1:2, 4, 6), format=TRUE, pattern='\%05.2f')
@@ -146,4 +134,3 @@ summary(fdt(volcano, right=TRUE), col=c(1:2, 4, 6), round=3, format=TRUE,
 \keyword{distribution}
 \keyword{table}
 \keyword{summary}
-\keyword{print}

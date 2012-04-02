@@ -4,8 +4,7 @@
 \docType{package}
 
 \title{
-  Frequency Distribution Tables, Histograms and Poligons
-}
+  Frequency Distribution Tables, Histograms and Poligons}
 
 \description{
   The \code{fdth} package contains a set of functions which easily allows
@@ -14,8 +13,7 @@
   The fdt can be formatted in many ways which may be suited to
   publication in many different ways (papers, books, etc).
   The \code{plot} method (S3) is the histogram which can be dealt with the
-  easiness and flexibility of a high level function.
-}
+  easiness and flexibility of a high level function.}
 
 \details{
   The frequency of a particular observation is the number of times the
@@ -58,15 +56,13 @@
   poligon (absolut, relative or cummulative).
   The methods \code{summary}, \code{print} and \code{plot} provide a reasonable
   set of parameters to format and plot the \code{fdt} object in a pretty
-  (and publishable) way.
-}
+  (and publishable) way.}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
 
-  Maintainer: Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})
-}
+  Maintainer: Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})}
 
 \keyword{fdt}
 \keyword{frequency}
@@ -77,8 +73,7 @@
 \seealso{
  \code{\link[graphics]{hist}} provided by \code{graphics};
  \code{\link[base]{table}}, \code{\link[base]{cut}} both provided by \code{base}
- and \code{\link[Hmisc]{hist.data.frame}} provided by \code{Hmisc} package.
-}
+ and \code{\link[Hmisc]{hist.data.frame}} provided by \code{Hmisc} package.}
 
 \examples{
 library (fdth)

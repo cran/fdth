@@ -9,8 +9,7 @@ fdt.matrix <-
       m      <- as.matrix(x[ ,i])
       fdt    <- make.fdt.multiple(m, k, breaks, right)
       tmpres <- list(table=fdt[[1]], breaks=fdt[[2]])
-      res    <- c(res, list(tmpres))
-    }
+      res    <- c(res, list(tmpres))}
 
     nms <- if (is.null(colnames(x))) paste('Column', 1:ncol(x), sep=':')
       else colnames(x)
