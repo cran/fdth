@@ -1,0 +1,133 @@
+%\VignetteIndexEntry{latex table for fdt object}
+\documentclass[10pt,a4paper]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[sc]{mathpazo}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,
+  tmargin=2.5cm, 
+  bmargin=2.5cm, 
+  lmargin=2.5cm, 
+  rmargin=2.5cm}
+\usepackage[urlcolor=blue,
+  citecolor=red,
+  colorlinks=true]{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{parskip}
+\usepackage[round]{natbib}
+% The four packages below are required by latex.fdt function
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{threeparttable}
+
+\setlength\parindent{0pt}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+
+\begin{titlepage}
+  \begin{center}
+
+  % Title
+    \HRule \\[0.4cm]
+    {\huge \bfseries \LaTeX~table for fdt objects} \\[0.4cm]
+
+    \HRule \\[1.5cm]
+
+    % Author and user
+    \begin{minipage}{0.5\textwidth}
+      \begin{flushleft} \large
+        \emph{Authors:}\\
+        José C. \textsc{Faria} \\
+        e Ivan B. \textsc{Allaman}
+      \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+      \begin{flushright} \large
+        \emph{Customization in \LaTeX:} \\
+        José C. \textsc{Faria}
+      \end{flushright}
+    \end{minipage}
+
+    \vfill
+
+    % Bottom of the page
+    {\large \today}
+
+  \end{center}
+\end{titlepage}
+\vspace{3cm}
+
+\newpage
+
+Examples of references: See Tables
+\ref{tbl-2} and
+\ref{tbl-3}.
+
+\newpage
+
+<<tab, echo=FALSE, results=tex>>=
+library(fdth)
+
+## Example 1: The simplest possible
+t1 <- fdt(rnorm(n=1e3,
+                mean=10,
+                sd=2))
+
+t1x <- latex.fdt(t1)
+
+t1x
+
+
+## Example 2
+(t1x <- latex.fdt(t1,
+                  replace.breaks=FALSE,
+                  columns=c(1:2, 4, 6)))
+
+
+## Example 3
+t2 <- fdt(rnorm(n=1e3,
+                mean=10,
+                sd=2),
+          right=TRUE)
+
+t2x <- latex.fdt(t2,
+                 algtable='\\centering',
+                 caption='Frequency distribution table 2',
+                 label='tbl-2',
+                 pattern='%.1f')
+
+t2x
+
+
+## Example 4
+t3 <- fdt(rnorm(n=1e3,
+                mean=10,
+                sd=2))
+
+t3x <- latex.fdt(t3,
+                 algtable='\\flushright',
+                 caption='Frequency distribution table 3',
+                 label='tbl-3',
+                 pattern='%.1e')
+
+t3x
+
+## Example 5: ftd.multiple
+t4 <- fdt(iris,
+          by='Species')
+
+t4x <- lapply(t4,
+              function(x) latex.fdt(x,
+                                    caption='Frequency distribution table'))
+
+cat(unlist(t4x),
+    sep='\n')
+@
+
+\end{document}
