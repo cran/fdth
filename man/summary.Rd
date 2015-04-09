@@ -2,19 +2,22 @@
 \alias{summary.fdt}
 \alias{summary.fdt.default}
 \alias{summary.fdt.multiple}
+\alias{summary.fdt_cat.default}
+\alias{summary.fdt_cat.multiple}
 
 \title{
-  Summary Methods for fdt Objects
+  Summary methods for fdt objects
 }
 
 \description{
   S3 methods to return a \code{data.frame} (the frequency
-  distribution table - \samp{fdt}) for \code{fdt.default} and \code{fdt.multiple}
-  objects.
+  distribution table - \samp{fdt}) for \code{fdt.default}, \code{fdt.multiple},
+  \code{fdt_cat.default} and \code{fdt_cat.multiple} objects.
 }
 
 \usage{
-  \method{summary}{fdt.default}(object,
+## S3 methods
+\method{summary}{fdt.default}(object,
         columns=1:6,
         round=2,
         format.classes=FALSE,
@@ -22,20 +25,32 @@
         row.names=FALSE,
         right=TRUE, \dots)
 
-  \method{summary}{fdt.multiple}(object,
+\method{summary}{fdt.multiple}(object,
         columns=1:6,
         round=2,
         format.classes=FALSE,
         pattern="\%09.3e",
+        row.names=FALSE,
+        right=TRUE, \dots)
+
+\method{summary}{fdt_cat.default}(object,
+        columns=1:6,
+        round=2,
+        row.names=FALSE,
+        right=TRUE, \dots)
+
+\method{summary}{fdt_cat.multiple}(object,
+        columns=1:6,
+        round=2,
         row.names=FALSE,
         right=TRUE, \dots)
 }
 
 \arguments{
-  \item{object}{A \code{fdt} object.}
-  \item{columns}{A \code{vector} of \code{integers} to select colums of the
+  \item{object}{A \code{fdt} or \code{fdt_cat} object.}
+  \item{columns}{A \code{vector} of \code{integers} to select columns of the
     \code{data.frame} table.}
-  \item{round}{Rounds the fractionary columns of \samp{fdt} to the specified number of
+  \item{round}{Rounds \samp{fdt} columns to the specified number of
     decimal places (default 2).}
   \item{format.classes}{Logical, if \code{TRUE} the first column of the
     data.frame table will be formated using regular expression.
@@ -45,7 +60,7 @@
     row names should be printed. The default is \code{FALSE}.}
   \item{right}{Logical, indicating whether or not strings should be right-aligned.
     The default is right-alignment.}
-  \item{\dots}{Potential further arguments (require by generic).}
+  \item{\dots}{Optional further arguments (require by generic).}
 }
 
 \details{
@@ -53,7 +68,7 @@
   will be shown, as well as the pattern of the first column. The columns are:
   \enumerate{
     \item \samp{Class limits} 
-    \item \samp{f} - Absolut frequency 
+    \item \samp{f} - Absolute frequency 
     \item \samp{rf} - Relative frequency 
     \item \samp{rf(\%)} - Relative frequency, \% 
     \item \samp{cf} - Cumulative frequency 
@@ -70,8 +85,9 @@
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  José Cláudio Faria \cr
+  Enio G. Jelihovschi \cr
+  Ivan B. Allaman
 }
 
 \examples{
@@ -132,6 +148,10 @@ mdf <- data.frame(X1=rep(LETTERS[1:4], 25),
                   Y2=rnorm(100, 60, 4),
                   Y3=rnorm(100, 50, 4),
                   Y4=rnorm(100, 40, 4))
+                  
+dcat <- fdt_cat(mdf) 
+
+summary(dcat)                 
 
 d <- fdt(mdf)
 

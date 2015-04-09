@@ -1,3 +1,20 @@
+2015-04-09 vs. 1.2-1 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+        * Ivan Bezerra Allaman has began to work in the project as co-author.
+	* Added the "by" argument to fdt_cat.data.frame function. As
+	consequence, the print.fdt_cat.multiple, plot.fdt_cat.multiple,
+	make.fdt_cat.multiple,fdt_cat.matrix functions were changed.
+	* Was added the latex.fdt_cat.multiple function to give suport the
+	objects of the fdt_cat.multiple class
+	* The Rd files make.fdt_cat.simple, make.fdt_cat.multiple,
+	make.fdt.format.classes, make.fdt.multiple and make.fdt.simple were
+	moved from the documentation
+
+2014-10-13 vs. 1.2-0 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+	* Thanks to Ivan B. Allaman to the bug fix of the function
+	make.fdt.simple.R
+	* It was added basic suport to categorical variables
+	* Some bugs were corrected
+
 2013-11-22 vs. 1.1-8 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
 	* plot.fdth.multiple: x11() was replaced by the portable way dev.new()
 	* The documentation has been deeply improved
@@ -30,4 +47,3 @@
 
 2010-05-16  vs. 1.0-0 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
 	* Restrict to testers
-

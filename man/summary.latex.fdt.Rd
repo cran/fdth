@@ -1,31 +1,33 @@
+% DONE
 \name{summary.latex.fdt}
 \alias{summary.latex.fdt}
 
 \title{
-  Summary Method for latex.fdt Objects
+  Summary method for latex.fdt and latex.fdt_cat objects
 }
 
 \description{
-  Returns (and prints) a summary list for \code{latex.fdt} objects.
+  Returns a summary list for \code{latex.fdt} and \code{latex.fdt_cat} objects.
 }
 
 \usage{
-  \method{summary}{latex.fdt}(object, \dots)
+## S3 method
+\method{summary}{latex.fdt}(object, \dots)
 }
 
 \arguments{
-  \item{object}{A given object of the class \code{\link{latex.fdt}}.}
+  \item{object}{A given object of the class \code{\link{latex.fdt}} or \code{\link{latex.fdt_cat}}.}
   \item{\dots}{Potential further arguments (require by generic).}
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  José Cláudio Faria \cr
+  Enio G. Jelihovschi \cr
+  Ivan B. Allaman
 }
 
 \seealso{
   \code{\link{fdt}},
-  \code{\link{latex.fdt}}
 }
 
 \examples{
@@ -38,14 +40,13 @@ t1 <- fdt(rnorm(n=1e3,
 
 t1x <- latex.fdt(t1)
 
-t1x
+summary(t1x)
 
 
 ## Example 2
 (t1x <- latex.fdt(t1,
                   replace.breaks=FALSE,
                   columns=c(1:2, 4, 6)))
-
 
 ## Example 3
 t2 <- fdt(rnorm(n=1e3,
@@ -59,8 +60,7 @@ t2x <- latex.fdt(t2,
                  label='tbl-2',
                  pattern='\%.1f')
 
-t2x
-
+summary(t2x)
 
 ## Example 4
 t3 <- fdt(rnorm(n=1e3,
@@ -73,7 +73,7 @@ t3x <- latex.fdt(t3,
                  label='tbl-3',
                  pattern='\%.1e')
 
-t3x
+summary(t3x)
 }
 
 \keyword{fdt, latex.fdta, summary}

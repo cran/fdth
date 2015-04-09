@@ -1,8 +1,10 @@
 \name{latex.fdt}
 \alias{latex.fdt}
+\alias{latex.fdt_cat}
+\alias{latex.fdt_cat.multiple} 
 
 \title{
-  LaTeX Table of the Frequency Distribution Table
+  LaTeX table of the frequency distribution table
 }
 
 \description{
@@ -27,25 +29,55 @@ latex.fdt(x,
           algclim='l',
           algfreq='r',
           hline3='\\\\hline')
+
+latex.fdt_cat(x,
+              columns=1:6,
+              where='!tbp',
+              caption=NULL,
+              label=NULL,
+              size='', 
+              algtable=c('\\\\flushleft', '\\\\centering', '\\\\flushright'),
+              hline1='\\\\hline',
+              header=NULL,
+              hline2='\\\\hline',
+              algclim='l',
+              algfreq='r',
+              hline3='\\\\hline')
+
+latex.fdt_cat.multiple(x,
+                       columns=1:6,
+                       where='!tbp',
+                       caption=NULL,
+                       label=NULL,
+                       size='', 
+                       algtable=c('\\\\flushleft', '\\\\centering', '\\\\flushright'),
+                       hline1='\\\\hline',
+                       header=NULL,
+                       hline2='\\\\hline',
+                       algclim='l',
+                       algfreq='r',
+                       hline3='\\\\hline')
+
+
 }
 
 \arguments{
   \item{x}{A \code{fdt} object.}
-  \item{columns}{A \code{vector} of \code{integers} to select colums of the
+  \item{columns}{A \code{vector} of \code{integers} to select columns of the
     \code{data.frame} table. For example: \code{columns=c(1:2, 4, 6)}.}
-  \item{round}{Rounds the fractionary columns of the \code{fdt} to the specified number of decimal places.
-   The default is 2.}
+  \item{round}{Rounds the \code{fdt} columns to the specified number of decimal places.
+    The default is 2.}
   \item{format.classes}{Logical, if \code{TRUE}, the default, the first column of the
     data.frame table will be formated using regular expression according with \samp{pattern} argument.}
   \item{pattern}{Same as \code{fmt} in \code{\link[base]{sprintf}}.
     The default is \samp{'\%.2f'}.}
   \item{replace.breaks}{Logical, if \code{TRUE}, the default, the mathematical symbols for breaks: \samp{[,)} or \samp{(,]},
-   will be replaced by the LaTeX \samp{$\vdash$} or \samp{$\dashv$} symbols.}
+    will be replaced by the LaTeX \samp{$\vdash$} or \samp{$\dashv$} symbols.}
   \item{where}{Specifies the location to which the floating body can move.
     The default is \samp{'!tbp'}.
     Possible values are the tabular environment same, e.g., \samp{'h'}, \samp{'b'} and \samp{'p'}.}
   \item{caption}{Is a legend of table.
-    The defaul is \code{NULL}.}
+    The default is \code{NULL}. If the table class is fdt_cat.multiple, the caption should be a vector.}
   \item{label}{A text string representing a symbolic label for the table for referencing in the LaTeX \samp{\\label} and \samp{\\ref} commands.
     \samp{label} is useful in a Rnoweb document only if caption is also provided.}
   \item{size}{Specifies the font size of the table.
@@ -70,27 +102,26 @@ latex.fdt(x,
 
 \details{
   The function \code{latex.fdt} was developed to make the life easier for those
-  who make latex tables with the results of the \code{fdt} function.
+  who whish to make latex tables with the results of the \code{fdt} function.
 
-  Some people could ask: why do not use the function \code{\link[Hmisc]{latex}} of the the package \pkg{Hmisc} or
+  Some people could ask: why do not use the function \code{\link[Hmisc]{latex}} of the package \pkg{Hmisc} or
   \code{\link[xtable]{xtable}} of the \pkg{xtable}?
-  Both \code{\link[Hmisc]{latex}} and \code{\link[xtable]{xtable}} functions are a bit complex and with many parameters
-  for construct an adequated \code{fdt} table.
-  It is not always intuitive to all users, discouraging some people to use the \code{\link[Hmisc]{latex}} or
-  \code{\link[xtable]{xtable}} function for constructing fdt tables, making the preparation of the fdt analysis
-  reports data laborious. 
+  Both \code{\link[Hmisc]{latex}} and \code{\link[xtable]{xtable}} functions are complex. Many parameters
+  are required to build an adequate \code{fdt} table.
+  It is not always intuitive to many users, discouraging them to use the \code{\link[Hmisc]{latex}} or
+  \code{\link[xtable]{xtable}} functions to build fdt tables. 
 
   The function \code{latex.fdt} is extremely easy to use.
-  Obviously, the function provides a formatting pre-set according to what the authors think ideal
-  for presentation in articles, reports, among others.
+  Obviously, the function provides a default formatting according to what the authors think is the ideal
+  for presentation in articles, reports, and others.
   If the user is not satisfied with the formatting provided by this function, the functions \code{\link[Hmisc]{latex}}
-  and \code{\link[xtable]{xtable}} provides arguments that allow formatting of tables according to user need.
+  and \code{\link[xtable]{xtable}} provides arguments that allow formatting the tables according to the user need.
 
   It is possible to select what columns of the table (a \code{data.frame})
   will be shown, as well as the pattern of the first column. The columns are:
   \enumerate{
     \item \samp{Class limits} 
-    \item \samp{f} - Absolut frequency 
+    \item \samp{f} - Absolute frequency 
     \item \samp{rf} - Relative frequency 
     \item \samp{rf(\%)} - Relative frequency, \% 
     \item \samp{cf} - Cumulative frequency 
@@ -102,13 +133,13 @@ latex.fdt(x,
 }
 
 \value{
-  An object of the class \code{latex.fdt}.
+  An object of the class \code{latex.fdt} and \code{latex.fdt_cat}.
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  and\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  José Cláudio Faria \cr
+  Enio G. Jelihovschi \cr
+  Ivan B. Allaman
 }
 
 \seealso{
@@ -120,6 +151,8 @@ latex.fdt(x,
 \examples{
 
 library(fdth)
+
+# +++++ Quantitative data
 
 ##Example 1: The simplest possible
 t1 <- fdt(rnorm(n=1e3,
@@ -164,6 +197,33 @@ t3x <- latex.fdt(t3,
                  pattern='\%.1e')
 
 t3x
+
+# +++++ Qualitative data
+
+## Example 5
+t4 <- fdt_cat(sample(LETTERS[1:3], 
+                     replace=TRUE,
+                     size=30))
+
+t4x <- latex.fdt_cat(t4,
+                     caption='Frequency distribution table 4',
+                     label='tbl-4')
+t4x
+
+t5 <- fdt_cat(data.frame(c1=sample(LETTERS[1:3],
+                                   replace=TRUE,
+                                   size=10),
+                         c2=sample(letters[4:5],
+                                   replace=TRUE,
+                                   size=10)))
+
+caption <- c('Frequency distribution table 5',
+             'Frequency distribution table 6')
+
+t5x <- latex.fdt_cat.multiple(t5,
+                              caption=caption,
+                              algtable='\\\\flushleft')
+t5x
 }
 
 \keyword{multivariate, table, latex, fdt}

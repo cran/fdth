@@ -2,19 +2,23 @@
 \alias{print.fdt}
 \alias{print.fdt.default}
 \alias{print.fdt.multiple}
+\alias{print.fdt_cat.default}
+\alias{print.fdt_cat.multiple}
 
 \title{
-  Print Methods for fdt Objects
+  Print methods for fdt objects
 }
 
 \description{
-  S3 methods to return a \code{data.frame} (the frequency
-  distribution table - fdt) for \code{fdt.default} and \code{fdt.multiple}
+  S3 methods to return a \code{data.frame} (the frequency distribution table - fdt) 
+  for \code{fdt.default} and \code{fdt.multiple} objects; \code{data.frame} (the frequency
+  distribution table - fdt_cat) for \code{fdt_cat.default} and \code{fdt_cat.multiple}
   objects.
 }
 
 \usage{
-  \method{print}{fdt.default}(x,
+## S3 methods
+\method{print}{fdt.default}(x,
       columns=1:6,
       round=2,
       format.classes=FALSE,
@@ -22,20 +26,32 @@
       row.names=FALSE,
       right=TRUE, \dots)
 
-  \method{print}{fdt.multiple}(x,
+\method{print}{fdt.multiple}(x,
       columns=1:6,
       round=2,
       format.classes=FALSE,
       pattern='\%09.3e',
+      row.names=FALSE,
+      right=TRUE, \dots)
+
+\method{print}{fdt_cat.default}(x,
+      columns=1:6,
+      round=2,
+      row.names=FALSE,
+      right=TRUE, \dots)
+
+\method{print}{fdt_cat.multiple}(x,
+      columns=1:6,
+      round=2,
       row.names=FALSE,
       right=TRUE, \dots)
 }
 
 \arguments{
   \item{x}{A \samp{fdt} object.}
-  \item{columns}{A \code{vector} of \code{integers} to select colums of the
+  \item{columns}{A \code{vector} of \code{integers} to select columns of the
     \code{data.frame} table.}
-  \item{round}{Rounds the fractionary columns of \samp{fdt} to the specified number of
+  \item{round}{Rounds \samp{fdt} columns to the specified number of
     decimal places (default 2).}
   \item{format.classes}{Logical, if \code{TRUE} the first column of the
     data.frame table will be formated using regular expression.
@@ -49,29 +65,32 @@
 }
 
 \details{
-  It is possible to select what columns of the table (a \code{data.frame})
-  will be shown, as well as the pattern of the first column. The columns are:
+  For \code{print.fdt}, it is possible to select what columns of the table 
+  (a \code{data.frame}) will be shown, as well as the pattern of the first column,
+   for \code{print.fdt_cat} it is only possible to select what columns of the table 
+  (a \code{data.frame}) will be shown. The columns are:
   \enumerate{
     \item \samp{Class limits} 
-    \item \samp{f} - Absolut frequency 
+    \item \samp{f} - Absolute frequency 
     \item \samp{rf} - Relative frequency 
     \item \samp{rf(\%)} - Relative frequency, \% 
     \item \samp{cf} - Cumulative frequency 
     \item \samp{cf(\%)} - Cumulative frequency, \% 
   }
- 
+
   The available parameters offer an easy and powerful way to format the \samp{fdt} for
   publications and other purposes.
 }
 
 \value{
-  A single \code{data.frame} for \code{fdt.default} or multiple
-  \code{data.frames} for \code{fdt.multiple}.
+  A single \code{data.frame} for \code{fdt.default} and \code{fdt.default} or multiple
+  \code{data.frames} for \code{fdt.multiple} and \code{fdt_cat.multiple}.
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  José Cláudio Faria \cr
+  Enio G. Jelihovschi \cr
+  Ivan B. Allaman
 }
 
 \examples{
@@ -83,8 +102,8 @@ library (fdth)
 set.seed(1)
 
 x <- rnorm(n=1e3,
-          mean=5,
-          sd=1)
+           mean=5,
+           sd=1)
 
 d <- fdt(x)
 
@@ -132,14 +151,18 @@ mdf <- data.frame(X1=rep(LETTERS[1:4], 25),
                   Y2=rnorm(100, 60, 4),
                   Y3=rnorm(100, 50, 4),
                   Y4=rnorm(100, 40, 4))
+                  
+(d <- fdt_cat(mdf))
+                  
+print(d)                  
 
 (d <- fdt(mdf))
 
+print(d)
+
 str(d)
 
-print(d) # the same
-
-print(d,
+print(d, # the s
       format=TRUE)
 
 print(d,

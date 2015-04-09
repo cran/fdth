@@ -2,29 +2,30 @@
 \alias{print.latex.fdt}
 
 \title{
-  Print Method for latex.fdt Objects
+  Print method for latex.fdt and latex.fdt_cat objects
 }
 
 \description{
-  Returns (and prints) a summary list for \code{latex.fdt} objects.
+  Prints a summary list for \code{latex.fdt} \code{latex.fdt_cat} objects.
 }
 
 \usage{
-  \method{print}{latex.fdt}(x, \dots)
+## S3 method
+\method{print}{latex.fdt}(x, \dots)
 }
 
 \arguments{
-  \item{x}{A given object of the class \code{latex.fdt}.}
-  \item{\dots}{Potential further arguments (require by generic).}
+  \item{x}{A given object of the class \code{latex.fdt} or \code{latex.fdt_cat}.}
+  \item{\dots}{Optional further arguments (require by generic).}
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  and\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  José Cláudio Faria \cr
+  Enio G. Jelihovschi \cr
+  Ivan B. Allaman
 }
 
-\seealso{\code{\link{latex.fdt}}}
+\seealso{\code{\link{latex.fdt}}, \code{\link{latex.fdt_cat}}}
 
 \examples{
 library(fdth)
