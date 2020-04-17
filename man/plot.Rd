@@ -56,7 +56,9 @@
      ylim=NULL,
      main=NULL,
      main.vars=TRUE,
-     x.round=2, \dots)
+     x.round=2, 
+     grouped=FALSE,
+     args.legend=NULL, \dots)
 
 \method{plot}{fdt_cat.default}(x,
      type=c('fb', 'fp', 'fd',
@@ -158,7 +160,9 @@
     \samp{1:} horizontal, \cr
     \samp{2:} perpendicular to the axes, \cr
     \samp{3:} vertical.}
-  \item{box}{...}
+  \item{box}{If \code{TRUE} (the default!), a box will be placed on the graphics. Only to categorical variable.}
+  \item{grouped}{If \code{TRUE}, the lines of the polygon types will be plotted in the same graphics. It's work only if the "by" argument is used.}
+  \item{args.legend}{List of additional arguments to be passed to \code{legend}; names of the list are used as argument names. Only used if \code{grouped=TRUE}. The default is \code{NULL}.}
   \item{\dots}{Optional plotting parameters.}
 }
 
@@ -182,10 +186,6 @@
   José Cláudio Faria \cr
   Enio G. Jelihovschi \cr
   Ivan B. Allaman
-}
-
-\seealso{
-  \code{\link[Hmisc]{hist.data.frame}} provided by \pkg{Hmisc} package.
 }
 
 \examples{
@@ -321,7 +321,8 @@ mdf <- data.frame(X1=rep(LETTERS[1:4], 25),
                   Y1=c(NA, NA, rnorm(96, 10, 1), NA, NA),
                   Y2=rnorm(100, 60, 4),
                   Y3=rnorm(100, 50, 4),
-                  Y4=rnorm(100, 40, 4))
+                  Y4=rnorm(100, 40, 4),
+                  stringsAsFactors=TRUE)
 
 # Histograms
 (d <- fdt(mdf))

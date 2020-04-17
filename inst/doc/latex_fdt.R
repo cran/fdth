@@ -1,92 +1,127 @@
 ### R code from vignette source 'latex_fdt.Rnw'
-### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: tab
 ###################################################
 library(fdth)
+library(xtable)
 
-## Example 1: The simplest possible
 t1 <- fdt(rnorm(n=1e3,
                 mean=10,
-                sd=2))
+                sd=2),
+          x.round=3)
 
-t1x <- latex.fdt(t1)
-
+t1x <- xtable(t1)
 t1x
 
 
-## Example 2
-(t1x <- latex.fdt(t1,
-                  replace.breaks=FALSE,
-                  columns=c(1:2, 4, 6)))
+###################################################
+### code chunk number 2: latex_fdt.Rnw:86-89
+###################################################
+print(t1x,
+      include.rownames=FALSE,
+      sanitize.text.function = function(x){x})
 
 
-## Example 3
-t2 <- fdt(rnorm(n=1e3,
-                mean=10,
-                sd=2),
-          right=TRUE)
+###################################################
+### code chunk number 3: latex_fdt.Rnw:96-106
+###################################################
+newclass <- gsub("[$\\\\[\\\\)$]","",t1x[,1],perl=TRUE)
+t3x <- t1x
+t3x[,1] <- newclass
 
-t2x <- latex.fdt(t2,
-                 algtable='\\centering',
-                 caption='Frequency distribution table 1',
-                 label='tbl-2',
-                 pattern='%.1f')
+print(t3x,
+      include.rownames=FALSE,
+      sanitize.text.function = function(x)gsub(",",
+                                               "$\\\\dashv$",
+                                               x),
+      table.placement='H')
 
-t2x
+
+###################################################
+### code chunk number 4: latex_fdt.Rnw:111-126
+###################################################
+clim <- t1$table[1]
+clim1 <- sapply(clim,
+                as.character)
+right <- t1$breaks[4]
+pattern='%05.2f'
+clim2 <- make.fdt.format.classes(clim1,
+                                 right,
+                                 pattern)
+clim3 <- sapply(clim2,function(x)paste0("$",x,"$"))
+t4x <- t1x
+t4x[,1] <- clim3
+
+print(t4x,
+      include.rownames=FALSE,
+      sanitize.text.function = function(x){x})
 
 
-## Example 4
-t3 <- fdt(rnorm(n=1e3,
-                mean=10,
-                sd=2))
-
-t3x <- latex.fdt(t3,
-                 algtable='\\flushright',
-                 caption='Frequency distribution table 2',
-                 label='tbl-3',
-                 pattern='%.1e')
-
-t3x
-
-## Example 5: ftd.multiple
-t4 <- fdt(iris,
+###################################################
+### code chunk number 5: latex_fdt.Rnw:131-137
+###################################################
+t5 <- fdt(iris,
           by='Species')
+attr(t5, "subheadings") <- paste0("Variable = ",
+                                  names(t5))
+print(xtable(t5),
+     table.placement='H')
 
-t4x <- lapply(t4,
-              function(x) latex.fdt(x,
-                                    caption='Frequency distribution table'))
 
-cat(unlist(t4x),
-    sep='\n')
+###################################################
+### code chunk number 6: latex_fdt.Rnw:142-149
+###################################################
+t51 <- xtable(t5)
+print(t51,
+      table.placement='H',
+      include.rownames=FALSE,
+      sanitize.text.function = function(x){x},
+      tabular.environment='longtable',
+      floating=FALSE)
 
-t5 <- fdt_cat(sample(LETTERS[1:3], 
+
+###################################################
+### code chunk number 7: latex_fdt.Rnw:154-177
+###################################################
+t6 <- fdt_cat(sample(LETTERS[1:3], 
                      replace=TRUE,
                      size=30))
 
-t5x <- latex.fdt_cat(t5,
-                     caption='Frequency distribution table 15',
-                     label='tbl-4')
+t6x <- xtable(t6)
+print(t6x,
+      table.placement='H',
+      include.rownames = FALSE)
+      
 
-cat(unlist(t5x),
-    sep='\n')
+t61 <- fdt_cat(data.frame(c1=sample(LETTERS[1:3],
+                                    replace=TRUE,
+                                    size=10),
+                          c2=sample(letters[4:5],
+                                    replace=TRUE,
+                                    size=10),
+                          stringsAsFactors=TRUE))
 
-t6 <- fdt_cat(data.frame(c1=sample(LETTERS[1:3],
-                                   replace=TRUE,
-                                   size=10),
-                         c2=sample(letters[4:5],
-                                   replace=TRUE,
-                                   size=10)))
+t61x <- xtable(t61)
+print(t61x,
+      table.placement='H',
+      include.rownames = FALSE)
 
-captions <- c('Frequency distribution table 16',
-             'Frequency distribution table 17')
 
-t6x <- latex.fdt_cat.multiple(t6,
-                              caption=captions,
-                              algtable='\\flushleft',
-                              label=c('tbl-5','tbl-6'))
-cat(unlist(t6x),
-    sep='\n')
+
+###################################################
+### code chunk number 8: latex_fdt.Rnw:182-193
+###################################################
+portugueseT <- c("Intervalo de classes","f","fr","fr(%)","fa","fa(%)")
+t7 <- t1$table
+names(t7) <- portugueseT
+t71 <- list(table=t7,breaks=t1$breaks)
+class(t71) <- "fdt"
+t7x <- xtable(t71)
+
+print(t7x,
+      table.placement='H',
+      include.rownames=FALSE,
+      sanitize.text.function = function(x){x})
 
 

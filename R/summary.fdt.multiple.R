@@ -8,7 +8,7 @@ summary.fdt.multiple <- function (object,
 {
   right.tmp  <- as.logical(object[[1]][['breaks']]['right'])
 
-  tnames <- names(object)
+  tnames <- names(object)[names(object)!='call']
 
   for (i in 1:length(tnames)) {
     res <- object[tnames[i]][[tnames[i]]][['table']]
@@ -39,4 +39,3 @@ summary.fdt.multiple <- function (object,
 
     cat('\n')}
 }
-
