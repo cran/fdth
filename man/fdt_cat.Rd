@@ -33,16 +33,16 @@ fdt_cat(x, \dots)
 }
 
 \arguments{
-  \item{x}{A \code{vector}, \code{data.frame} or \code{matrix} object.
+  \item{x}{a \code{vector}, \code{data.frame} or \code{matrix} object.
     If \samp{x} is \code{data.frame} or \code{matrix} it must contain at least 
     one character/factor column.}
-   \item{by}{Categorical variable used for grouping each categorical response,
+   \item{by}{categorical variable used for grouping each categorical response,
     useful only on \code{data.frame}.}  
-  \item{sort}{Logical. Should the \code{fdt_cat} be sorted by the absolute frequency
+  \item{sort}{logical. Should the \code{fdt_cat} be sorted by the absolute frequency
     into ascending or descending order? (default = \code{TRUE}).}
-  \item{decreasing}{Logical. Should the sort order be increasing or decreasing?
+  \item{decreasing}{logical. Should the sort order be increasing or decreasing?
     (default = \code{TRUE}).}
-  \item{\dots}{Optional further arguments (required by generic).}
+  \item{\dots}{optional further arguments (required by generic).}
 }
 
 \details{
@@ -83,19 +83,21 @@ fdt_cat(x, \dots)
 \examples{
 library(fdth)
 
-## Categorical
+# Categorical
 x <- sample(x=letters[1:5],
             size=5e2,
             rep=TRUE)
 
-(fdt.c <- fdt_cat(x))
+table(x)
 
-(fdt.c <- fdt_cat(x,
-                  sort=FALSE))
+(ft.c <- fdt_cat(x))
 
-##================================================
-## Data.frame: multivariated with two categorical
-##================================================
+(ft.c <- fdt_cat(x,
+                 sort=FALSE))
+
+#================================================
+# Data.frame: multivariated with two categorical
+#================================================
 mdf <- data.frame(c1=sample(LETTERS[1:3], 1e2, rep=TRUE),
                   c2=as.factor(sample(1:10, 1e2, rep=TRUE)),
                   n1=c(NA, NA, rnorm(96, 10, 1), NA, NA),
@@ -105,20 +107,20 @@ mdf <- data.frame(c1=sample(LETTERS[1:3], 1e2, rep=TRUE),
 
 head(mdf)
 
-(fdt.c <- fdt_cat(mdf))
+(ft.c <- fdt_cat(mdf))
 
-(fdt.c <- fdt_cat(mdf,
-                  dec=FALSE))
+(ft.c <- fdt_cat(mdf,
+                 dec=FALSE))
 
-(fdt.c <- fdt_cat(mdf,
-                  sort=FALSE))
+(ft.c <- fdt_cat(mdf,
+                 sort=FALSE))
 
-(fdt.c <- fdt_cat(mdf,
-                  by='c1'))
+(ft.c <- fdt_cat(mdf,
+                 by='c1'))
 
-##================================================
-## Matrix: two categorical
-##================================================
+#================================================
+# Matrix: two categorical
+#================================================
 x <- matrix(sample(x=letters[1:10],
                    size=100,
                    rep=TRUE),
@@ -128,7 +130,7 @@ x <- matrix(sample(x=letters[1:10],
 
 head(x)
 
-(fdt.c <- fdt_cat(x))
+(ft.c <- fdt_cat(x))
 }
 
 \keyword{fdt}

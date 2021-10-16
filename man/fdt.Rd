@@ -24,34 +24,38 @@ fdt(x, \dots)
     end,
     h,
     breaks=c('Sturges', 'Scott', 'FD'),
-    right=FALSE, \dots)
+    right=FALSE,
+    na.rm=FALSE, \dots)
 
 \method{fdt}{data.frame}(x,
     k,
     by,
     breaks=c('Sturges', 'Scott', 'FD'),
-    right=FALSE, \dots)
+    right=FALSE,
+    na.rm=FALSE, \dots)
 
 \method{fdt}{matrix}(x,
     k,
     breaks=c('Sturges', 'Scott', 'FD'),
-    right=FALSE, \dots)
+    right=FALSE,
+    na.rm=FALSE, \dots)
 }
 
 \arguments{
-  \item{x}{A \code{vector}, \code{data.frame} or \code{matrix} object.
+  \item{x}{a \code{vector}, \code{data.frame} or \code{matrix} object.
     If \samp{x} is \code{data.frame} or \code{matrix} it must contain at least 
     one numeric column.}
-  \item{k}{Number of class intervals.}
-  \item{start}{Left endpoint of the first class interval.}
-  \item{end}{Right endpoint of the last class interval.}
-  \item{h}{Class interval width.}
-  \item{by}{Categorical variable used for grouping each numeric variable,
+  \item{k}{number of class intervals.}
+  \item{start}{left endpoint of the first class interval.}
+  \item{end}{right endpoint of the last class interval.}
+  \item{h}{class interval width.}
+  \item{by}{categorical variable used for grouping each numeric variable,
     useful only on \code{data.frame}.}
-  \item{breaks}{Method used to determine the number of interval classes, 
+  \item{breaks}{method used to determine the number of interval classes,
     c(\dQuote{Sturges}, \dQuote{Scott}, \dQuote{FD}).}
-  \item{right}{Right endpoints open (default = \code{FALSE}).}
-  \item{\dots}{Potencial further arguments (required by generic).}
+  \item{right}{right endpoints open (default = \code{FALSE}).}
+  \item{na.rm}{logical. Should missing values be removed? (default = \code{FALSE}).}
+  \item{\dots}{potencial further arguments (required by generic).}
 }
 
 \details{
@@ -104,54 +108,56 @@ fdt(x, \dots)
 \examples{
 library(fdth)
 
-##========
-## Vector
-##========
+#========
+# Vector
+#========
 x <- rnorm(n=1e3,
            mean=5,
            sd=1)
 
+str(x)
+
 # x
-(fdt <- fdt(x))
+(ft <- fdt(x))
 
 # x, alternative breaks
-(fdt <- fdt(x,
-            breaks='Scott'))
+(ft <- fdt(x,
+           breaks='Scott'))
 
 # x, k
-(fdt <- fdt(x,
-            k=10))
+(ft <- fdt(x,
+           k=10))
 
 # x, star, end
 range(x)
 
-(fdt <- fdt(x,
-            start=floor(min(x)),
-            end=floor(max(x) + 1)))
+(ft <- fdt(x,
+           start=floor(min(x)),
+           end=floor(max(x) + 1)))
 
 # x, start, end, h
-(fdt <- fdt(x,
-            start=floor(min(x)),
-            end=floor(max(x) + 1),
-            h=1))
+(ft <- fdt(x,
+           start=floor(min(x)),
+           end=floor(max(x) + 1),
+           h=1))
 
 # Effect of right
-x <- rep(1:3, 3); sort(x)
+sort(x <- rep(1:3, 3))
 
-(fdt <- fdt(x,
-            start=1,
-            end=4,
-            h=1))
+(ft <- fdt(x,
+           start=1,
+           end=4,
+           h=1))
 
-(fdt <- fdt(x,
-            start=0,
-            end=3,
-            h=1,
-            right=TRUE))
+(ft <- fdt(x,
+           start=0,
+           end=3,
+           h=1,
+           right=TRUE))
 
-##================================================
-## Data.frame: multivariated with two categorical
-##================================================
+#================================================
+# Data.frame: multivariated with two categorical
+#================================================
 mdf <- data.frame(c1=sample(LETTERS[1:3], 1e2, TRUE),
                   c2=as.factor(sample(1:10, 1e2, TRUE)),
                   n1=c(NA, NA, rnorm(96, 10, 1), NA, NA),
@@ -161,33 +167,49 @@ mdf <- data.frame(c1=sample(LETTERS[1:3], 1e2, TRUE),
 
 head(mdf)
 
-(fdt <- fdt(mdf))
+#(ft <- fdt(mdf))  # Error message due to presence of NA values
 
-# By factor!
-(fdt <- fdt(mdf,
-            k=5,
-            by='c1'))
+(ft <- fdt(mdf,
+           na.rm=TRUE))
+
+str(mdf)
+
+# By factor
+(ft <- fdt(mdf,
+           k=5,
+           by='c1',
+           na.rm=TRUE))
 
 # choose FD criteria               
-(fdt <- fdt(mdf,
-            breaks='FD',
-            by='c1'))
+(ft <- fdt(mdf,
+           breaks='FD',
+           by='c1',
+           na.rm=TRUE))
 
-(fdt <- fdt(mdf,
-            k=5,
-            by='c2'))
+# k
+(ft <- fdt(mdf,
+           k=5,
+           by='c2',
+           na.rm=TRUE))
 
-(fdt <- fdt(iris,
-            k=10))
+(ft <- fdt(iris,
+           k=10))
 
-(fdt <- fdt(iris,
-            k=5,
-            by='Species'))
+(ft <- fdt(iris,
+           k=5,
+           by='Species'))
 
 #=========================
 # Matrices: multivariated
 #=========================
-(fdt <-fdt(state.x77))
+(ft <-fdt(state.x77))
+
+summary(ft,
+        format=TRUE)
+
+summary(ft,
+        format=TRUE,
+        pattern='\%.2f')
 }
 
 \keyword{fdt}

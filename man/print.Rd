@@ -48,20 +48,20 @@
 }
 
 \arguments{
-  \item{x}{A \samp{fdt} object.}
-  \item{columns}{A \code{vector} of \code{integers} to select columns of the
+  \item{x}{a \samp{fdt} object.}
+  \item{columns}{a \code{vector} of \code{integers} to select columns of the
     \code{data.frame} table.}
-  \item{round}{Rounds \samp{fdt} columns to the specified number of
+  \item{round}{rounds \samp{fdt} columns to the specified number of
     decimal places (default 2).}
-  \item{format.classes}{Logical, if \code{TRUE} the first column of the
+  \item{format.classes}{logical, if \code{TRUE} the first column of the
     data.frame table will be formated using regular expression.
     The default is \dQuote{\%09.3e}.}
-  \item{pattern}{Same as \code{fmt} in \code{\link[base]{sprintf}}.}
-  \item{row.names}{Logical (or character vector), indicating whether (or what)
+  \item{pattern}{same as \code{fmt} in \code{\link[base]{sprintf}}.}
+  \item{row.names}{logical (or character vector), indicating whether (or what)
     row names should be printed. The default is \code{FALSE}.}
-  \item{right}{Logical, indicating whether or not strings should be right-aligned.
+  \item{right}{logical, indicating whether or not strings should be right-aligned.
     The default is right-alignment.}
-  \item{\dots}{Potential further arguments (require by generic).}
+  \item{\dots}{potential further arguments (require by generic).}
 }
 
 \details{
@@ -71,11 +71,11 @@
   (a \code{data.frame}) will be shown. The columns are:
   \enumerate{
     \item \samp{Class limits} 
-    \item \samp{f} - Absolute frequency 
-    \item \samp{rf} - Relative frequency 
-    \item \samp{rf(\%)} - Relative frequency, \% 
-    \item \samp{cf} - Cumulative frequency 
-    \item \samp{cf(\%)} - Cumulative frequency, \% 
+    \item \samp{f} - absolute frequency
+    \item \samp{rf} - relative frequency
+    \item \samp{rf(\%)} - relative frequency, \%
+    \item \samp{cf} - cumulative frequency
+    \item \samp{cf(\%)} - cumulative frequency, \%
   }
 
   The available parameters offer an easy and powerful way to format the \samp{fdt} for
@@ -105,27 +105,27 @@ x <- rnorm(n=1e3,
            mean=5,
            sd=1)
 
-d <- fdt(x)
+ft <- fdt(x)
 
-str(d)
+str(ft)
 
-d
+ft
 
-print(d) # the same
+print(ft) # the same
 
-print(d,
+print(ft,
       format=TRUE)      # It can not be what you want to publications!
 
-print(d,
+print(ft,
       format=TRUE,
       pattern='\%.2f')   # Huumm ..., good, but ... Can it be better?
 
-print(d,
+print(ft,
       col=c(1:2, 4, 6),
       format=TRUE, 
       pattern='\%.2f')   # Yes, it can!
 
-range(x)                # To know x
+range(x)                 # To know x
 
 print(fdt(x,
           start=1,
@@ -135,12 +135,12 @@ print(fdt(x,
       format=TRUE,
       pattern='\%d')     # Is it nice now?
 
-d[['table']]                        # Stores the feq. dist. table (fdt)
-d[['breaks']]                       # Stores the breaks of fdt
-d[['breaks']]['start']              # Stores the left value of the first class
-d[['breaks']]['end']                # Stores the right value of the last class
-d[['breaks']]['h']                  # Stores the class interval
-as.logical(d[['breaks']]['right'])  # Stores the right option
+ft[['table']]                        # Stores the feq. dist. table (fdt)
+ft[['breaks']]                       # Stores the breaks of fdt
+ft[['breaks']]['start']              # Stores the left value of the first class
+ft[['breaks']]['end']                # Stores the right value of the last class
+ft[['breaks']]['h']                  # Stores the class interval
+as.logical(ft[['breaks']]['right'])  # Stores the right option
 
 #=============================================
 # Data.frames: multivariated with categorical
@@ -153,32 +153,33 @@ mdf <- data.frame(X1=rep(LETTERS[1:4], 25),
                   Y4=rnorm(100, 40, 4),
                   stringsAsFactors=TRUE)
                   
-(d <- fdt_cat(mdf))
+(ft <- fdt_cat(mdf))
                   
-print(d)                  
+print(ft)
 
-(d <- fdt(mdf))
+(ft <- fdt(mdf,
+         na.rm=TRUE))
 
-print(d)
+print(ft)
 
-str(d)
+str(ft)
 
-print(d, # the s
+print(ft, # the s
       format=TRUE)
 
-print(d,
+print(ft,
       format=TRUE,
       pattern='\%05.2f')  # regular expression
 
-print(d,
+print(ft,
       col=c(1:2, 4, 6), 
       format=TRUE, 
       pattern='\%05.2f')
 
-print(d,
+print(ft,
       col=c(1:2, 4, 6))
 
-print(d,
+print(ft,
       col=c(1:2, 4, 6),
       format=TRUE,
       pattern='\%05.2f')
@@ -187,18 +188,21 @@ levels(mdf$X1)
 
 print(fdt(mdf,
           k=5,
-          by='X1'))
+          by='X1',
+         na.rm=TRUE))
 
 levels(mdf$X2)
 
 print(fdt(mdf,
           breaks='FD',
-          by='X2'),
+          by='X2',
+          na.rm=TRUE),
       round=3)
 
 print(fdt(mdf,
           k=5,
-          by='X2'),
+          by='X2',
+          na.rm=TRUE),
       format=TRUE,
       round=3)
 

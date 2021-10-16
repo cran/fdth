@@ -32,8 +32,8 @@ mfv(x, \dots)
 }
 
 \arguments{
-  \item{x}{A \code{fdt} or \code{fdt_cat} (simple or multiple) object.}
-  \item{\dots}{Required to be generic.}
+  \item{x}{a \code{fdt} or \code{fdt_cat} (simple or multiple) object.}
+  \item{\dots}{required to be generic.}
 }
 
 \details{\code{mfv.fdt} and \code{mfv.fdt_cat} calculates the most frequent value (mfv) based on a known formula. 
@@ -59,7 +59,7 @@ or \code{mfv.fdt_cat}for each variable, that is, each column of the data.frame.
 }
 
 \examples{
-## Numerical
+# Numerical
 mdf <- data.frame(x=rnorm(1e2, 
                           20, 
                           2),
@@ -76,9 +76,9 @@ mfv(mdf$x)   # From vector x
 mfv(mdf$y)   # From vector y
 mfv(mdf$z)   # From vector z
 
-(tb <- fdt(mdf))
+(ft <- fdt(mdf))
 
-mfv(tb)      # From agruped dad in a fdt
+mfv(ft)      # From agruped data in a fdt object
 
 
 ## Categorical
@@ -98,7 +98,7 @@ mfv(mdf$c1)   # From vector c1
 mfv(mdf$c2)   # From vector c2
 mfv(mdf$c3)   # From vector c3
 
-(tb <- fdt_cat(mdf))
+(ft <- fdt_cat(mdf))
 
-mfv(tb)      # From agruped dad in a fdt 
+mfv(ft)      # From agruped data in a fdt object
 }   
