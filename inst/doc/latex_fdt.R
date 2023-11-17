@@ -16,7 +16,7 @@ t1x
 
 
 ###################################################
-### code chunk number 2: latex_fdt.Rnw:86-89
+### code chunk number 2: latex_fdt.Rnw:87-90
 ###################################################
 print(t1x,
       include.rownames=FALSE,
@@ -24,9 +24,12 @@ print(t1x,
 
 
 ###################################################
-### code chunk number 3: latex_fdt.Rnw:96-106
+### code chunk number 3: latex_fdt.Rnw:97-110
 ###################################################
-newclass <- gsub("[$\\\\[\\\\)$]","",t1x[,1],perl=TRUE)
+newclass <- gsub("[$\\\\[\\\\)$]",
+                 "",
+                 t1x[,1],
+                 perl=TRUE)
 t3x <- t1x
 t3x[,1] <- newclass
 
@@ -39,17 +42,21 @@ print(t3x,
 
 
 ###################################################
-### code chunk number 4: latex_fdt.Rnw:111-126
+### code chunk number 4: latex_fdt.Rnw:115-134
 ###################################################
 clim <- t1$table[1]
 clim1 <- sapply(clim,
                 as.character)
 right <- t1$breaks[4]
 pattern='%05.2f'
+
 clim2 <- make.fdt.format.classes(clim1,
                                  right,
                                  pattern)
-clim3 <- sapply(clim2,function(x)paste0("$",x,"$"))
+clim3 <- sapply(clim2,
+                function(x) paste0("$",
+                                   x,
+                                   "$"))
 t4x <- t1x
 t4x[,1] <- clim3
 
@@ -59,9 +66,9 @@ print(t4x,
 
 
 ###################################################
-### code chunk number 5: latex_fdt.Rnw:131-137
+### code chunk number 5: latex_fdt.Rnw:139-145
 ###################################################
-t5 <- fdt(iris,
+t5 <- fdt(iris[, c(1:2, 5)],
           by='Species')
 attr(t5, "subheadings") <- paste0("Variable = ",
                                   names(t5))
@@ -70,7 +77,7 @@ print(xtable(t5),
 
 
 ###################################################
-### code chunk number 6: latex_fdt.Rnw:142-149
+### code chunk number 6: latex_fdt.Rnw:150-157
 ###################################################
 t51 <- xtable(t5)
 print(t51,
@@ -82,7 +89,7 @@ print(t51,
 
 
 ###################################################
-### code chunk number 7: latex_fdt.Rnw:154-177
+### code chunk number 7: latex_fdt.Rnw:162-185
 ###################################################
 t6 <- fdt_cat(sample(LETTERS[1:3], 
                      replace=TRUE,
@@ -110,12 +117,18 @@ print(t61x,
 
 
 ###################################################
-### code chunk number 8: latex_fdt.Rnw:182-193
+### code chunk number 8: latex_fdt.Rnw:190-207
 ###################################################
-portugueseT <- c("Intervalo de classes","f","fr","fr(%)","fa","fa(%)")
+portugueseT <- c("Intervalo de classes",
+                 "f",
+                 "fr",
+                 "fr(%)",
+                 "fa",
+                 "fa(%)")
 t7 <- t1$table
 names(t7) <- portugueseT
-t71 <- list(table=t7,breaks=t1$breaks)
+t71 <- list(table=t7,
+            breaks=t1$breaks)
 class(t71) <- "fdt"
 t7x <- xtable(t71)
 
