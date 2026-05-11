@@ -9,7 +9,7 @@
 }
 
 \description{
-  S3 methods for the standard deviation of a \code{fdt}. \cr 
+  S3 methods for the standard deviation of a \code{fdt}. \cr
   Useful to estimate the standard deviation (when the real data vector is not known) from a previous \code{fdt}.
 }
 
@@ -30,13 +30,13 @@ sd(x, \dots)
   \item{\dots}{required to be generic.}
 }
 
-\details{\code{sd.fdt} calculates the value of the variance based on a known formula. 
-\code{sd.fdt.multiple} calls \code{sd.fdt}for each variable, that is, each column of the data.frame.
+\details{\code{sd.fdt} calculates the value of the standard deviation based on a known formula.
+\code{sd.fdt.multiple} calls \code{sd.fdt} for each variable, that is, each column of the data.frame.
 }
 
-\value{\code{sd.fdt} returns a numeric vector containing the value of the median of the \code{fdt}.
- \code{median.fdt.multiple} returns a list, where each element is a numeric vector 
- containing the value of the variance of the \code{fdt} for each variable.
+\value{\code{sd.fdt} returns a numeric vector containing the value of the standard deviation of the \code{fdt}.
+ \code{sd.fdt.multiple} returns a list, where each element is a numeric vector
+ containing the value of the standard deviation of the \code{fdt} for each variable.
 }
 
 \seealso{\code{var.fdt}, \code{mean.fdt}.
@@ -49,10 +49,12 @@ sd(x, \dots)
 }
 
 \examples{
-mdf <- data.frame(x=rnorm(1e3, 
-                          20, 
+library(fdth)
+
+mdf <- data.frame(x=rnorm(1e3,
+                          20,
                           2),
-                  y=rnorm(1e3, 
+                  y=rnorm(1e3,
                           30,
                           3),
                   z=rnorm(1e3,
@@ -61,9 +63,13 @@ mdf <- data.frame(x=rnorm(1e3,
 
 head(mdf)
 
+# From a data.frame
 apply(mdf,
       2,
       sd)
 
-sd(fdt(mdf))      
+# From a fdt object
+sd(fdt(mdf))
+
+unlist(sd(fdt(mdf)))
 }

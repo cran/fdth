@@ -1,3 +1,3 @@
 var <-
-  function (x, ...) UseMethod("var")
+  function(x, ...) UseMethod("var")
 

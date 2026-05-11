@@ -9,7 +9,7 @@
 }
 
 \description{
-  S3 methods for the variance of a \code{fdt}. \cr 
+  S3 methods for the variance of a \code{fdt}. \cr
   Useful to estimate the variance (when the real data vector is not known) from a previous \code{fdt}.
 }
 
@@ -30,12 +30,12 @@ var(x, \dots)
   \item{\dots}{required to be generic.}
 }
 
-\details{\code{var.fdt} calculates the value of the variance based on a known formula. 
-\code{var.fdt.multiple} calls \code{var.fdt}for each variable, that is, each column of the data.frame.
+\details{\code{var.fdt} calculates the value of the variance based on a known formula.
+\code{var.fdt.multiple} calls \code{var.fdt} for each variable, that is, each column of the data.frame.
 }
 
-\value{\code{var.fdt} returns a numeric vector containing the value of the median of the \code{fdt}.
- \code{median.fdt.multiple} returns a list, where each element is a numeric vector 
+\value{\code{var.fdt} returns a numeric vector containing the value of the variance of the \code{fdt}.
+ \code{var.fdt.multiple} returns a list, where each element is a numeric vector
  containing the value of the variance of the \code{fdt} for each variable.
 }
 
@@ -49,10 +49,12 @@ var(x, \dots)
 }
 
 \examples{
-mdf <- data.frame(x=rnorm(1e2, 
-                          20, 
+library(fdth)
+
+mdf <- data.frame(x=rnorm(1e2,
+                          20,
                           2),
-                  y=rnorm(1e2, 
+                  y=rnorm(1e2,
                           30,
                           3),
                   z=rnorm(1e2,
@@ -61,9 +63,13 @@ mdf <- data.frame(x=rnorm(1e2,
 
 head(mdf)
 
+# From a data.frame
 apply(mdf,
       2,
       var)
 
-var(fdt(mdf))      
+# From a fdt object
+var(fdt(mdf))
+
+unlist(var(fdt(mdf)))
 }

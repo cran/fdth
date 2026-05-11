@@ -21,11 +21,11 @@
   \item{\dots}{required by generic.}
 }
 
-\details{\code{median.fdt} calculates the value of the median based on a known formula. 
-\code{median.fdt.multiple} calls \code{mean.fdt}for each variable, that is, each column of the data.frame.
+\details{\code{median.fdt} calculates the median value based on a known formula.
+\code{median.fdt.multiple} calls \code{median.fdt} for each variable, that is, each column of the data.frame.
 }
 
-\value{\code{mean.fdt} returns a numeric vector containing the value of the median of the \code{fdt}.
+\value{\code{median.fdt} returns a numeric vector containing the value of the median of the \code{fdt}.
  \code{median.fdt.multiple} returns a list, where each element is a numeric vector 
  containing the value of the median of the \code{fdt} for each variable.
 }
@@ -40,7 +40,9 @@
 }
 
 \examples{
-mdf <- data.frame(x=rnorm(1e3, 
+library(fdth)
+
+mdf <- data.frame(x=rnorm(1e3,
                           20, 
                           2),
                   y=rnorm(1e3, 
@@ -52,9 +54,11 @@ mdf <- data.frame(x=rnorm(1e3,
 
 head(mdf)
 
+# From a data.frame
 apply(mdf,
       2,
       median)
 
-median(fdt(mdf))      
+# From a fdt object
+median(fdt(mdf))
 }

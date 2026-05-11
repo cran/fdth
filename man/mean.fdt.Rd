@@ -41,7 +41,9 @@ the midpoint of each interval class. \code{mean.fdt.multiple} calls \code{mean.f
 }
 
 \examples{
-mdf <- data.frame(x=rnorm(1e3, 
+library(fdth)
+
+mdf <- data.frame(x=rnorm(1e3,
                           20, 
                           2),
                   y=rnorm(1e3, 
@@ -53,9 +55,11 @@ mdf <- data.frame(x=rnorm(1e3,
 
 head(mdf)
 
+# From a data.frame
 apply(mdf,
       2,
       mean)
 
-mean(fdt(mdf))      
+# From a fdt object
+mean(fdt(mdf))
 }

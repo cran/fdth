@@ -23,9 +23,11 @@
 
 \arguments{
   \item{x}{a \code{fdt} (simple or multiple) object.}
-  \item{i}{a vector of length up to the length of probs}
-  \item{probs}{vector of probabilities defining the quantiles}
-  \item{\dots}{potencial further arguments (required by generic).}
+  \item{i}{an integer vector indicating which quantiles should be computed.
+  Values must be in \code{1:(length(probs)-1)}.}
+  \item{probs}{a finite numeric vector in \code{[0, 1]} defining the quantile
+  scale. It must have at least two values and be sorted in non-decreasing order.}
+  \item{\dots}{potential further arguments (required by generic).}
 }
 
 \details{\code{quantile.fdt} calculates the quantiles based on a known formula for 
@@ -33,13 +35,14 @@
  for each variable, that is, each column of the data.frame.
 }
 
-\value{\code{quantile.fdt} returns a numeric vector containing the value(s) of the 
-quantile(s) from \code{fdt}.
+\value{\code{quantile.fdt} returns a named numeric vector containing the value(s) of the 
+quantile(s) from \code{fdt}. Names are derived from the selected probability levels
+in \code{probs} (for example, \code{25\%}, \code{50\%}, \code{75\%}).
  \code{quantile.fdt.multiple} returns a list, where each element is a numeric vector 
  containing the quantile(s) of the \code{fdt} for each variable.
 }
 
-\seealso{\code{median.fdt}, \code{var.fdt}.
+\seealso{\code{median.fdt}, \code{var.fdt}, \code{\link{mfv}}.
 }
 
 \author{
@@ -49,8 +52,50 @@ quantile(s) from \code{fdt}.
 }
 
 \examples{
+library(fdth)
+
+x <- rnorm(n=1e3,
+           mean=5,
+           sd=1)
+
+(ft <- fdt(x))
+
+# Quartile from vector
+quantile(x)[2:4]
+
+# Quartile from grouped data in a fdt object
+quantile(ft,
+         i=1:3)
+
+# Quartile from vector
+quantile(x,
+         probs=seq(from=0,
+                   to=1,
+                   by=.1))[2:10]
+
+# Decile from grouped data in a fdt object
+quantile(ft,
+         i=1:9,
+         probs=seq(from=0,
+                   to=1,
+                   by=.1))
+
+# Percentile from vector
+quantile(x,
+         probs=seq(from=0,
+                   to=1,
+                   by=.01))[2:100]
+
+# Percentile from grouped data in a fdt object
+quantile(ft,
+         i=1:99,
+         probs=seq(from=0,
+                   to=1,
+                   by=.01))
+
+# From a data.frame
 mdf <- data.frame(x=rnorm(1e2, 
-                          20, 
+                          20,
                           2),
                   y=rnorm(1e2, 
                           30,
@@ -61,13 +106,14 @@ mdf <- data.frame(x=rnorm(1e2,
 
 head(mdf)
 
-# From data.frame
+# From a data.frame (rows 2:4 are the 25\%, 50\%, and 75\% quantiles)
 apply(mdf,
       2,
-      quantile)[-c(1,4), ]
+      quantile)[2:4, ]
 
-# From fdt
-quantile(fdt(mdf))               # Notice that the i default is 1 (the first quartile)
+# From a fdt object
+quantile(fdt(mdf),
+         i=1:3)
 
 ## A small (but didactic) joke  
 quantile(fdt(mdf),
@@ -93,22 +139,35 @@ quantile(fdt(mdf),
                    1, 
                    0.001))       # The permile 500
 
-median(fdt(mdf))                 # The median (all the results are the same) ;)
+median(fdt(mdf))                 # The median (all results are the same) ;)
 
 # More than one quantile
-ql <- numeric()
+quantile(fdt(mdf$x),
+         i=1:3,
+         probs=seq(0,
+                   1,
+                   0.25))  # The three quartiles
 
-for(i in 1:3)
-  ql[i] <- quantile(fdt(mdf$x),
-                    i=i,
-                    probs=seq(0,
-                              1,
-                              0.25))  # The tree quartiles
+quantile(fdt(mdf$x),
+         i=1:9,
+         probs=seq(0,
+                   1,
+                   0.10))  # The nine deciles
 
-names(ql) <- paste0(c(25,
-                      50,
-                      75),
-                    '\%')
-round(ql,
-      2)
+# Legacy approach (no longer necessary)
+# ql <- numeric()
+# 
+# for(i in 1:3)
+#   ql[i] <- quantile(fdt(mdf$x),
+#                     i=i,
+#                     probs=seq(0,
+#                               1,
+#                               0.25))  # The three quartiles
+# 
+# names(ql) <- paste0(c(25,
+#                       50,
+#                       75),
+#                     '\%')
+# round(ql,
+#       2)
 }
